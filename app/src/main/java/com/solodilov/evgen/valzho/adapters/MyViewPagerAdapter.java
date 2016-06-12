@@ -1,0 +1,72 @@
+package com.solodilov.evgen.valzho.adapters;
+
+import android.content.Context;
+import android.support.v4.view.PagerAdapter;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+
+import com.solodilov.evgen.valzho.R;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MyViewPagerAdapter extends PagerAdapter {
+    private List<String> mListPhoto;
+    private Context mContext;
+    @BindView(R.id.image_view_photo)
+    ImageView mImageView;
+    @BindView(R.id.image_view_photo_progress)
+    ProgressBar mProgresBar;
+
+    public MyViewPagerAdapter(Context context, List<String> listPhoto) {
+        mListPhoto = listPhoto;
+        mContext = context;
+
+    }
+
+    @Override
+    public int getCount() {
+        return mListPhoto == null || mListPhoto.size() == 0 ? 1 : mListPhoto.size();
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, final int position) {
+        LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View rootView = layoutInflater.inflate(R.layout.custom_pager_image_view, container, false);
+        ButterKnife.bind(this, rootView);
+        if (mListPhoto != null && mListPhoto.size() > 0) {
+            mProgresBar.setVisibility(View.VISIBLE);
+            Picasso.with(mImageView.getContext())
+                    .load(mListPhoto.get(position))
+                    .error(R.drawable.no_photo)
+                    .into(mImageView, new com.squareup.picasso.Callback() {
+                        @Override
+                        public void onSuccess() {
+                            mProgresBar.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onError() {
+                            mProgresBar.setVisibility(View.GONE);
+                        }
+                    });
+        }
+        container.addView(rootView);
+        return rootView;
+    }
+
+    @Override
+    public boolean isViewFromObject(View view, Object object) {
+        return view == object;
+    }
+
+    public void restoreAdapter(List<String> uriList) {
+        mListPhoto = uriList;
+    }
+}

@@ -1,0 +1,45 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="4dp">
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_collection_photo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/photo"
+            app:layout_heightPercent="66%" />
+
+        <TextView
+            android:id="@+id/tv_big_model_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/vp_collection_photo"
+            android:gravity="center_horizontal"
+            android:text="sgfasdg"
+            android:textAllCaps="true"
+            android:textSize="24sp" />
+        <TextView
+            android:id="@+id/tv_big_array_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_big_model_name"
+            android:gravity="end"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/tv_big_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_big_array_size"
+            android:textSize="16sp" />
+
+    </android.support.percent.PercentRelativeLayout>
+</android.support.v7.widget.CardView>

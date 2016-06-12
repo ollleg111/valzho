@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Val Zho</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_season_category">SeasonCategory</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="text_winter">Winter</string>
+    <string name="text_spring">spring</string>
+    <string name="text_summer">summer</string>
+    <string name="text_autumn">autumn</string>
+    <string name="text_all">All</string>
+    <string name="photo">The best</string>
+</resources>
