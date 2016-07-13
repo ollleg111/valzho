@@ -73,7 +73,7 @@ public class FullCardModelFragment extends Fragment {
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
         if (savedInstanceState != null) {
-            mModel = savedInstanceState.getParcelable(ARG_SECTION_MODEL);
+            mModel = (Model) savedInstanceState.getSerializable(ARG_SECTION_MODEL);
 
             MyViewPagerAdapter myPagerAdapter = (MyViewPagerAdapter) mViewPager.getAdapter();
             myPagerAdapter.restoreAdapter(mModel.getmPhotoURL());
