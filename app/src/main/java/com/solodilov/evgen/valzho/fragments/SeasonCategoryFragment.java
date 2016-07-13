@@ -37,10 +37,6 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
     private ModelRepository mModelRepository;
     private MyRVAdapter mMyRVAdapter;
 
-    public SeasonCategoryFragment() {
-        mModelRepository = new FirebaseRepository();
-    }
-
     public static SeasonCategoryFragment newInstance(SelectSeason season) {
         SeasonCategoryFragment fragment = new SeasonCategoryFragment();
         Bundle args = new Bundle();
@@ -48,6 +44,7 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,14 +63,30 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mMyRVAdapter = new MyRVAdapter(null,getContext());
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-                mRecyclerView.setAdapter(mMyRVAdapter);
-
-        mModelRepository.registerObserver(this);
-        mModelRepository.loadModelList(mSeason);
+        mModelRepository = new FirebaseRepository();
+        mMyRVAdapter = new MyRVAdapter(null, getContext());
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        mRecyclerView.setAdapter(mMyRVAdapter);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        mModelRepository.registerObserver(this);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+            mModelRepository.loadModelList(mSeason);
+    }
+
+    @Override
+    public void onStop() {
+        mModelRepository.removeObserver();
+        super.onStop();
+    }
 
     public void onSwapAdapter(List<Model> list) {
         mMyRVAdapter.swapAdapter(list);

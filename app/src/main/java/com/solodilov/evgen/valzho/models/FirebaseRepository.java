@@ -20,16 +20,17 @@ public class FirebaseRepository implements ModelRepository {
     private List<Model> modelList = new LinkedList<>();
     private ObserverRepository mObserverRepository;
 
+
     @Override
     public void loadModelList(SelectSeason season) {
         if (mAuth == null) {
             mAuth = FirebaseAuth.getInstance();
         }
         DatabaseReference mReference = FirebaseDatabase.getInstance().getReference();
-        if(season==SelectSeason.ALL){
-            for(SelectSeason s : SelectSeason.values()){
-                if(s!=SelectSeason.ALL)
-                getDataSeasone(s,mReference);
+        if (season == SelectSeason.ALL) {
+            for (SelectSeason s : SelectSeason.values()) {
+                if (s != SelectSeason.ALL)
+                    getDataSeasone(s, mReference);
             }
         }
         getDataSeasone(season, mReference);
@@ -47,7 +48,8 @@ public class FirebaseRepository implements ModelRepository {
                         modelList.add(m);
                         Log.d(LOG, m.toString());
                     }
-                    notifyObserver();
+                    if (mObserverRepository != null)
+                        notifyObserver();
                 }
             }
 
@@ -64,13 +66,12 @@ public class FirebaseRepository implements ModelRepository {
     }
 
     @Override
-    public void removeObserver(ObserverRepository o) {
+    public void removeObserver() {
         mObserverRepository = null;
     }
 
     @Override
     synchronized public void notifyObserver() {
-
         mObserverRepository.update(modelList);
     }
 }
