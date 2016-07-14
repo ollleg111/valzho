@@ -1,9 +1,9 @@
 package com.solodilov.evgen.valzho.models;
 
-import com.solodilov.evgen.valzho.SelectSeason;
+import com.solodilov.evgen.valzho.Seasons;
 
 public interface ModelRepository {
-    void loadModelList(SelectSeason season);
+    void loadModelList(Seasons season);
 
     void registerObserver(ObserverRepository o);
 

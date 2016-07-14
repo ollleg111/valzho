@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.solodilov.evgen.valzho.R;
-import com.solodilov.evgen.valzho.SelectSeason;
+import com.solodilov.evgen.valzho.Seasons;
 import com.solodilov.evgen.valzho.adapters.MyRVAdapter;
 import com.solodilov.evgen.valzho.adapters.SectionsPagerAdapter;
 import com.solodilov.evgen.valzho.api.Model;
@@ -24,6 +24,8 @@ public class SeasonCategoryActivity extends AppCompatActivity implements MyRVAda
     ViewPager mViewPager;
     @BindView(R.id.tabs)
     TabLayout mTabLayout;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private FragmentManager mFragmentManager = getSupportFragmentManager();
 
@@ -32,18 +34,18 @@ public class SeasonCategoryActivity extends AppCompatActivity implements MyRVAda
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_season_category);
         ButterKnife.bind(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(mToolbar);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(this, mFragmentManager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
-        SelectSeason season = (SelectSeason) getIntent().getSerializableExtra(MainActivity.KEY_SEASON);
+        Seasons season = (Seasons) getIntent().getSerializableExtra(MainActivity.KEY_SEASON);
         mViewPager.setCurrentItem(season.ordinal());
     }
 
     public void setVisibleToolBar(boolean visible) {
         mTabLayout.setVisibility(visible ? View.VISIBLE : View.GONE);
+        mToolbar.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     @Override

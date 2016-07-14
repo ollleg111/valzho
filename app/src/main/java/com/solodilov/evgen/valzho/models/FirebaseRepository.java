@@ -8,7 +8,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.solodilov.evgen.valzho.SelectSeason;
+import com.solodilov.evgen.valzho.Seasons;
 import com.solodilov.evgen.valzho.api.Model;
 
 import java.util.LinkedList;
@@ -22,14 +22,14 @@ public class FirebaseRepository implements ModelRepository {
 
 
     @Override
-    public void loadModelList(SelectSeason season) {
+    public void loadModelList(Seasons season) {
         if (mAuth == null) {
             mAuth = FirebaseAuth.getInstance();
         }
         DatabaseReference mReference = FirebaseDatabase.getInstance().getReference();
-        if (season == SelectSeason.ALL) {
-            for (SelectSeason s : SelectSeason.values()) {
-                if (s != SelectSeason.ALL)
+        if (season == Seasons.ALL) {
+            for (Seasons s : Seasons.values()) {
+                if (s != Seasons.ALL)
                     getDataSeasone(s, mReference);
             }
         }
@@ -37,7 +37,7 @@ public class FirebaseRepository implements ModelRepository {
 
     }
 
-    private void getDataSeasone(SelectSeason season, DatabaseReference mReference) {
+    private void getDataSeasone(Seasons season, DatabaseReference mReference) {
         DatabaseReference mReferenceChild = mReference.child(season.name());
         mReferenceChild.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

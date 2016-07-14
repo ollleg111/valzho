@@ -54,13 +54,13 @@ public class FullCardModelFragment extends Fragment {
         mTv.setText(mModel.getmModelName());
         mTvDescription.setText(mModel.getmDescription());
         mTvArraySize.setText(mModel.getmArraySize());
-
+        getActivity().setTitle(mModel.getmModelName());
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewPager.setAdapter(new MyViewPagerAdapter(getContext(),mModel.getmPhotoURL()));
+        mViewPager.setAdapter(new MyViewPagerAdapter(getContext(), mModel.getmPhotoURL()));
     }
 
     @Override
@@ -69,20 +69,22 @@ public class FullCardModelFragment extends Fragment {
         seasonCategoryActivity.setVisibleToolBar(true);
         super.onDestroyView();
     }
+
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
         if (savedInstanceState != null) {
             mModel = (Model) savedInstanceState.getSerializable(ARG_SECTION_MODEL);
-
             MyViewPagerAdapter myPagerAdapter = (MyViewPagerAdapter) mViewPager.getAdapter();
             myPagerAdapter.restoreAdapter(mModel.getmPhotoURL());
             myPagerAdapter.notifyDataSetChanged();
         }
     }
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putSerializable(ARG_SECTION_MODEL, mModel);
         super.onSaveInstanceState(outState);
     }
+
 }

@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.solodilov.evgen.valzho.R;
-import com.solodilov.evgen.valzho.SelectSeason;
+import com.solodilov.evgen.valzho.Seasons;
 import com.solodilov.evgen.valzho.activitys.SeasonCategoryActivity;
 import com.solodilov.evgen.valzho.fragments.SeasonCategoryFragment;
 
@@ -25,13 +25,13 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        SelectSeason[] season = SelectSeason.values();
+        Seasons[] season = Seasons.values();
         return SeasonCategoryFragment.newInstance(season[position]);
     }
 
     @Override
     public int getCount() {
-        return SelectSeason.values().length;
+        return Seasons.values().length;
     }
 
     @Override

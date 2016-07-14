@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.solodilov.evgen.valzho.R;
-import com.solodilov.evgen.valzho.SelectSeason;
+import com.solodilov.evgen.valzho.Seasons;
 import com.solodilov.evgen.valzho.adapters.MyRVAdapter;
 import com.solodilov.evgen.valzho.api.Model;
 import com.solodilov.evgen.valzho.models.FirebaseRepository;
@@ -33,11 +33,11 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
-    private SelectSeason mSeason;
+    private Seasons mSeason;
     private ModelRepository mModelRepository;
     private MyRVAdapter mMyRVAdapter;
 
-    public static SeasonCategoryFragment newInstance(SelectSeason season) {
+    public static SeasonCategoryFragment newInstance(Seasons season) {
         SeasonCategoryFragment fragment = new SeasonCategoryFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_SECTION_SEASON, season);
@@ -56,7 +56,7 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        mSeason = (SelectSeason) getArguments().getSerializable(ARG_SECTION_SEASON);
+        mSeason = (Seasons) getArguments().getSerializable(ARG_SECTION_SEASON);
         textView.setText(mSeason.name());
     }
 
@@ -74,12 +74,13 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
         super.onStart();
         mModelRepository.registerObserver(this);
 
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-            mModelRepository.loadModelList(mSeason);
+        mModelRepository.loadModelList(mSeason);
     }
 
     @Override

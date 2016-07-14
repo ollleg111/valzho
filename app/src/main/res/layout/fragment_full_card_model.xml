@@ -1,9 +1,9 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-   >
+    android:layout_height="match_parent">
 
     <android.support.percent.PercentRelativeLayout
         android:layout_width="match_parent"
@@ -24,22 +24,26 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/vp_collection_photo"
             android:gravity="center_horizontal"
-            android:text="sgfasdg"
             android:textAllCaps="true"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            tools:text="Name Model" />
+
         <TextView
             android:id="@+id/tv_big_array_size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_big_model_name"
             android:gravity="end"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            tools:text="Size model" />
+
         <TextView
             android:id="@+id/tv_big_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_big_array_size"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:text="Many description modell!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11 1!!!!!!!!!!!!!!!!!!!!!!!!" />
 
     </android.support.percent.PercentRelativeLayout>
 </android.support.v7.widget.CardView>

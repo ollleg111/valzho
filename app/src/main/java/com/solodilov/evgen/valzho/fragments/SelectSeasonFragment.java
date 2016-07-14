@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.solodilov.evgen.valzho.R;
-import com.solodilov.evgen.valzho.SelectSeason;
+import com.solodilov.evgen.valzho.Seasons;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -33,7 +33,7 @@ public class SelectSeasonFragment extends Fragment {
         return rootView;
     }
 
-    public void onButtonPressed(SelectSeason season) {
+    public void onButtonPressed(Seasons season) {
         if (mListener != null) {
             mListener.onFragmentSeason(season);
         }
@@ -58,19 +58,19 @@ public class SelectSeasonFragment extends Fragment {
 
     @OnClick({R.id.button_winter, R.id.button_spring, R.id.button_autumn, R.id.button_summer})
     public void clickSeason(View view) {
-        SelectSeason selectSeason = null;
+        Seasons selectSeason = null;
         switch (view.getId()) {
             case R.id.button_winter:
-                selectSeason = SelectSeason.WINTER;
+                selectSeason = Seasons.WINTER;
                 break;
             case R.id.button_summer:
-                selectSeason = SelectSeason.SUMMER;
+                selectSeason = Seasons.SUMMER;
                 break;
             case R.id.button_spring:
-                selectSeason = SelectSeason.SPRING;
+                selectSeason = Seasons.SPRING;
                 break;
             case R.id.button_autumn:
-                selectSeason = SelectSeason.AUTUMN;
+                selectSeason = Seasons.AUTUMN;
                 break;
             default:
                 break;
@@ -80,6 +80,6 @@ public class SelectSeasonFragment extends Fragment {
     }
 
     public interface OnFragmentSelectionSeason {
-        void onFragmentSeason(SelectSeason season);
+        void onFragmentSeason(Seasons season);
     }
 }
