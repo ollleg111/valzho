@@ -7,9 +7,9 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="text_winter">Winter</string>
-    <string name="text_spring">spring</string>
-    <string name="text_summer">summer</string>
-    <string name="text_autumn">autumn</string>
+    <string name="text_spring">Spring</string>
+    <string name="text_summer">Summer</string>
+    <string name="text_autumn">Autumn</string>
     <string name="text_all">All</string>
     <string name="photo">The best</string>
 </resources>

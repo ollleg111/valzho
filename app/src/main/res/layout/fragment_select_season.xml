@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_bright">
 
     <View
         android:id="@+id/anchor"
@@ -18,13 +19,17 @@
         android:layout_alignRight="@id/anchor"
         android:layout_margin="6dp"
         app:cardCornerRadius="15dp">
-
         <ImageView
             android:id="@+id/winter_img"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/title_winter"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/title_winter" />
+        <TextView
+            android:text="@string/text_winter"
+            style="@style/style_title_text"
+            android:textColor="#0b4586"/>
+
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -39,7 +44,13 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/holo_blue_dark" />
+            android:background="@android:color/holo_blue_dark"
+            android:scaleType="centerCrop"
+            android:src="@drawable/title_spring" />
+        <TextView
+            android:text="@string/text_spring"
+            style="@style/style_title_text"
+            android:textColor="#26860b"/>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -54,7 +65,13 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/holo_blue_dark" />
+            android:background="@android:color/holo_blue_dark"
+            android:scaleType="centerCrop"
+            android:src="@drawable/title_summer" />
+        <TextView
+            android:text="@string/text_summer"
+            style="@style/style_title_text"
+            android:textColor="#1a6e00"/>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -69,6 +86,12 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/holo_blue_dark" />
+            android:background="@android:color/holo_blue_dark"
+            android:scaleType="centerCrop"
+            android:src="@drawable/title_autumn" />
+        <TextView
+            android:text="@string/text_autumn"
+            style="@style/style_title_text"
+            android:textColor="#766b2d"/>
     </android.support.v7.widget.CardView>
 </RelativeLayout>
