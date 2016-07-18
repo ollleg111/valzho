@@ -44,9 +44,13 @@ public class FirebaseRepository implements ModelRepository {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChildren()) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Model m = snapshot.getValue(Model.class);
-                        modelList.add(m);
-                        Log.d(LOG, m.toString());
+                        try {
+                            Model m = snapshot.getValue(Model.class);
+                            modelList.add(m);
+                            Log.d(LOG, m.toString());
+                        }catch (Exception e){
+                            Log.e(LOG,"ERRRRRRRRRR",e);
+                        }
                     }
                     if (mObserverRepository != null)
                         notifyObserver();

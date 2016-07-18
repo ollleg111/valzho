@@ -1,5 +1,6 @@
 package com.solodilov.evgen.valzho.fragments;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.solodilov.evgen.valzho.R;
 import com.solodilov.evgen.valzho.Seasons;
@@ -27,9 +27,6 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
     private static final String ARG_SECTION_SEASON = "section_season";
     private static final String LOG = SeasonCategoryFragment.class.getCanonicalName();
 
-    @Nullable
-    @BindView(R.id.section_label)
-    TextView textView;
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
@@ -57,7 +54,26 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mSeason = (Seasons) getArguments().getSerializable(ARG_SECTION_SEASON);
-        textView.setText(mSeason.name());
+        int resource = setBackgroundOfResource(mSeason);
+        if (resource > 0) {
+            view.setBackgroundResource(resource);
+        }
+    }
+
+    private int setBackgroundOfResource(Seasons mSeason) {
+        switch (mSeason) {
+            case WINTER:
+                return R.drawable.title_winter;
+            case SPRING:
+                return R.drawable.title_spring;
+            case SUMMER:
+                return R.drawable.title_summer;
+            case AUTUMN:
+                return R.drawable.title_autumn;
+            case ALL:
+                return -1;
+        }
+        return 0;
     }
 
     @Override
@@ -65,7 +81,11 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
         super.onActivityCreated(savedInstanceState);
         mModelRepository = new FirebaseRepository();
         mMyRVAdapter = new MyRVAdapter(null, getContext());
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        } else {
+            mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        }
         mRecyclerView.setAdapter(mMyRVAdapter);
     }
 
@@ -73,8 +93,6 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
     public void onStart() {
         super.onStart();
         mModelRepository.registerObserver(this);
-
-
     }
 
     @Override
@@ -89,13 +107,10 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
         super.onStop();
     }
 
-    public void onSwapAdapter(List<Model> list) {
+    @Override
+    public void update(List<Model> list) {
         mMyRVAdapter.swapAdapter(list);
     }
 
-    @Override
-    public void update(List<Model> list) {
-        onSwapAdapter(list);
-    }
 }
 
