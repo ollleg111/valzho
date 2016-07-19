@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Model implements Serializable {
-    private long mId;
+    private Long mId;
     private String mModelName;
     private String mArraySize;
     private String mDescription;
@@ -13,7 +13,7 @@ public class Model implements Serializable {
     public Model() {
     }
 
-    public Model(long id, String modelName, String arraySizes, String description, List<String> photos) {
+    public Model(Long id, String modelName, String arraySizes, String description, List<String> photos) {
         mId = id;
         mModelName = modelName;
         mArraySize = arraySizes;
@@ -21,11 +21,11 @@ public class Model implements Serializable {
         mPhotoURL = photos;
     }
 
-    public long getmId() {
+    public Long getmId() {
         return mId;
     }
 
-    public void setmId(long mId) {
+    public void setmId(Long mId) {
         this.mId = mId;
     }
 

@@ -47,19 +47,17 @@ public class FirebaseRepository implements ModelRepository {
                         try {
                             Model m = snapshot.getValue(Model.class);
                             modelList.add(m);
-                            Log.d(LOG, m.toString());
-                        }catch (Exception e){
-                            Log.e(LOG,"ERRRRRRRRRR",e);
+                        } catch (Exception e) {
+                            Log.e(LOG, snapshot.toString(), e);
                         }
                     }
-                    if (mObserverRepository != null)
-                        notifyObserver();
                 }
+                if (mObserverRepository != null)
+                    notifyObserver();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
     }

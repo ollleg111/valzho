@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="170dp"
     android:layout_margin="4dp"
-    app:cardCornerRadius="4dp"
-    app:cardBackgroundColor="#b4f2f3f4">
+    app:cardBackgroundColor="#b4f2f3f4"
+    app:cardCornerRadius="4dp">
 
     <android.support.percent.PercentRelativeLayout
         android:layout_width="match_parent"
@@ -17,8 +17,11 @@
             android:id="@+id/title_image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingTop="4dp"
             android:contentDescription="@string/app_name"
+            android:layout_alignParentTop="true"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingTop="4dp"
             android:scaleType="centerInside"
             android:src="@drawable/no_photo"
             app:layout_heightPercent="66%" />
@@ -37,18 +40,18 @@
             android:textAlignment="center"
             android:textColor="@android:color/primary_text_light"
             android:textStyle="bold"
-            tools:text="Model"/>
+            tools:text="Model" />
 
         <TextView
             android:id="@+id/tv_available_sizes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textColor="@android:color/secondary_text_light"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/tv_model_name" />
+            android:layout_below="@id/tv_model_name"
+            android:textAlignment="center"
+            android:textColor="@android:color/secondary_text_light" />
 
 
     </android.support.percent.PercentRelativeLayout>

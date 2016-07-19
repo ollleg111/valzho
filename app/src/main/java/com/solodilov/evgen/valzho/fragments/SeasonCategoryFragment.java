@@ -6,9 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.solodilov.evgen.valzho.R;
 import com.solodilov.evgen.valzho.Seasons;
@@ -25,10 +29,11 @@ import butterknife.ButterKnife;
 
 public class SeasonCategoryFragment extends Fragment implements ObserverRepository {
     private static final String ARG_SECTION_SEASON = "section_season";
-    private static final String LOG = SeasonCategoryFragment.class.getCanonicalName();
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
+    @BindView(R.id.master_layout)
+    RelativeLayout mLayoutMaster;
 
     private Seasons mSeason;
     private ModelRepository mModelRepository;
@@ -92,13 +97,15 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
     @Override
     public void onStart() {
         super.onStart();
-        mModelRepository.registerObserver(this);
+        if (mModelRepository != null)
+            mModelRepository.registerObserver(this);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mModelRepository.loadModelList(mSeason);
+        if (mModelRepository != null)
+            mModelRepository.loadModelList(mSeason);
     }
 
     @Override
@@ -109,7 +116,25 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
 
     @Override
     public void update(List<Model> list) {
-        mMyRVAdapter.swapAdapter(list);
+        if (!list.isEmpty()) {
+            mMyRVAdapter.swapAdapter(list);
+        } else {
+            mLayoutMaster.removeView(mRecyclerView);
+            TextView tempTextView = createTempTextView();
+            mLayoutMaster.addView(tempTextView);
+        }
+    }
+
+    private TextView createTempTextView() {
+        TextView textView = new TextView(getActivity());
+        RelativeLayout.LayoutParams etLayoutParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT);
+        textView.setLayoutParams(etLayoutParams);
+        textView.setGravity(Gravity.CENTER);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 50);
+        textView.setText(getString(R.string.models_are_not_ready));
+        return textView;
     }
 
 }

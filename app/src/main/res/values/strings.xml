@@ -12,4 +12,5 @@
     <string name="text_autumn">Autumn</string>
     <string name="text_all">All</string>
     <string name="photo">The best</string>
+    <string name="models_are_not_ready">The models for this season is still not ready.</string>
 </resources>
