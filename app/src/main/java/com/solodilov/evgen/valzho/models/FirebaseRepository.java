@@ -30,14 +30,14 @@ public class FirebaseRepository implements ModelRepository {
         if (season == Seasons.ALL) {
             for (Seasons s : Seasons.values()) {
                 if (s != Seasons.ALL)
-                    getDataSeasone(s, mReference);
+                    getDataSeason(s, mReference);
             }
         }
-        getDataSeasone(season, mReference);
+        getDataSeason(season, mReference);
 
     }
 
-    private void getDataSeasone(Seasons season, DatabaseReference mReference) {
+    private void getDataSeason(Seasons season, DatabaseReference mReference) {
         DatabaseReference mReferenceChild = mReference.child(season.name());
         mReferenceChild.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
