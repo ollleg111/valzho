@@ -50,10 +50,12 @@ public class SeasonCategoryActivity extends AppCompatActivity implements MyRVAda
 
     @Override
     public void onShowCardModel(Model model) {
-        mFragmentManager
-                .beginTransaction()
-                .replace(R.id.main_content, FullCardModelFragment.newInstance(model))
-                .addToBackStack("")
-                .commit();
+        FullCardModelFragment fragment = FullCardModelFragment.newInstance(model);
+        fragment.show(mFragmentManager,null);
+//        mFragmentManager
+//                .beginTransaction()
+//                .replace(R.id.main_content, FullCardModelFragment.newInstance(model))
+//                .addToBackStack("")
+//                .commit();
     }
 }
