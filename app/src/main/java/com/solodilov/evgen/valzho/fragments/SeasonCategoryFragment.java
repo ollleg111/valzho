@@ -64,22 +64,6 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
         }
     }
 
-    private int setBackgroundOfResource(Seasons mSeason) {
-        switch (mSeason) {
-            case WINTER:
-                return R.drawable.title_winter;
-            case SPRING:
-                return R.drawable.title_spring;
-            case SUMMER:
-                return R.drawable.title_summer;
-            case AUTUMN:
-                return R.drawable.title_autumn;
-            case ALL:
-                return -1;
-        }
-        return 0;
-    }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -91,6 +75,8 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
             mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         }
         mRecyclerView.setAdapter(mMyRVAdapter);
+        if (mModelRepository != null)
+            mModelRepository.loadModelList(mSeason);
     }
 
     @Override
@@ -103,8 +89,7 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
     @Override
     public void onResume() {
         super.onResume();
-        if (mModelRepository != null)
-            mModelRepository.loadModelList(mSeason);
+
     }
 
     @Override
@@ -134,6 +119,22 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 50);
         textView.setText(getString(R.string.models_are_not_ready));
         return textView;
+    }
+
+    private int setBackgroundOfResource(Seasons mSeason) {
+        switch (mSeason) {
+            case WINTER:
+                return R.drawable.title_winter;
+            case SPRING:
+                return R.drawable.title_spring;
+            case SUMMER:
+                return R.drawable.title_summer;
+            case AUTUMN:
+                return R.drawable.title_autumn;
+            case ALL:
+                return -1;
+        }
+        return 0;
     }
 
 }

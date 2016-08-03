@@ -50,24 +50,24 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
             holder.mTvAvailableSize.setText(model.getmArraySize());
 
             if (model.getmPhotoURL() != null) {
-                    Picasso.with(holder.mTitleImage.getContext())
-                            .load(model.getmPhotoURL().get(0))
-                            .fit()
-                            .centerInside()
-                            .error(R.drawable.no_photo)
-                            .into(holder.mTitleImage, new com.squareup.picasso.Callback() {
-                                @Override
-                                public void onSuccess() {
-                                    holder.showImages(true);
-                                    Log.d(LOG_, "1111111");
-                                }
+                Picasso.with(holder.mTitleImage.getContext())
+                        .load(model.getmPhotoURL().get(0))
+                        .fit()
+                        .centerInside()
+                        .error(R.drawable.no_photo)
+                        .into(holder.mTitleImage, new com.squareup.picasso.Callback() {
+                            @Override
+                            public void onSuccess() {
+                                holder.showImages(true);
+                                Log.d(LOG_, "1111111");
+                            }
 
-                                @Override
-                                public void onError() {
-                                    holder.showImages(true);
-                                    Log.d(LOG_, "2222222");
-                                }
-                            });
+                            @Override
+                            public void onError() {
+                                holder.showImages(true);
+                                Log.d(LOG_, "2222222");
+                            }
+                        });
 
             } else holder.showImages(true);
         } else holder.showImages(true);
