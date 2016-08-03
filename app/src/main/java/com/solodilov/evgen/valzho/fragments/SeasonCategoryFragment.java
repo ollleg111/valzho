@@ -47,7 +47,6 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
         return fragment;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -17,7 +17,7 @@ import com.solodilov.evgen.valzho.api.Model;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class FullCardModelFragment extends DialogFragment{
+public class FullCardModelFragment extends DialogFragment {
 
     private static final String ARG_SECTION_MODEL = "model";
     private Model mModel;
@@ -42,7 +42,7 @@ public class FullCardModelFragment extends DialogFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mModel = (Model) getArguments().getSerializable(ARG_SECTION_MODEL);
-        getDialog().setTitle("dsgdgsdfgsdfg");
+        getDialog().setTitle(mModel.getmModelName());
         View rootView = inflater.inflate(R.layout.fragment_full_card_model, container);
         ButterKnife.bind(this, rootView);
         SeasonCategoryActivity seasonCategoryActivity = (SeasonCategoryActivity) getActivity();

@@ -78,7 +78,7 @@ public class IntroFragment extends Fragment {
         protected Void doInBackground(Void... params) {
             try {
                 // test Internet connection
-                TimeUnit.SECONDS.sleep(3);
+                TimeUnit.SECONDS.sleep(1);
                 onButtonPressed();
             } catch (InterruptedException e) {
                 e.printStackTrace();
