@@ -10,14 +10,25 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.solodilov.evgen.valzho.R;
 import com.solodilov.evgen.valzho.connections.TestInternet;
 
+import java.util.concurrent.TimeUnit;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class IntroFragment extends Fragment {
+    @BindView(R.id.progressBar)
+    ProgressBar mProgressBar;
+    @BindView(R.id.tv_intro)
+    TextView mTvIntro;
     private OnFragmentInteractionListener mListener;
-    private ProgressBar mProgressBar;
 
     public static IntroFragment newInstance() {
         IntroFragment fragment = new IntroFragment();
@@ -35,22 +46,28 @@ public class IntroFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mProgressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        ButterKnife.bind(this, getActivity());
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mProgressBar.setVisibility(View.VISIBLE);
-        new MyTask(getActivity()).execute();
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_intro_text);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {}
 
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                new MyTask(getActivity()).execute();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
+        mTvIntro.startAnimation(animation);
     }
 
-    public void onButtonPressed() {
-        if (mListener != null) {
-            mListener.onFragmentInteraction();
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
@@ -82,9 +99,23 @@ public class IntroFragment extends Fragment {
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
         protected Boolean doInBackground(Void... params) {
             TestInternet testInternet = new TestInternet(context);
-            return testInternet.isNetworkAvailable();
+            boolean isInternet;
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                isInternet = testInternet.isNetworkAvailable();
+            }
+            return isInternet;
         }
 
         @Override
@@ -112,5 +143,11 @@ public class IntroFragment extends Fragment {
                 });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    private void onButtonPressed() {
+        if (mListener != null) {
+            mListener.onFragmentInteraction();
+        }
     }
 }
