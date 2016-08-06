@@ -3,14 +3,13 @@ package com.solodilov.evgen.valzho.activitys;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 
 import com.solodilov.evgen.valzho.R;
 import com.solodilov.evgen.valzho.Seasons;
 import com.solodilov.evgen.valzho.fragments.IntroFragment;
 import com.solodilov.evgen.valzho.fragments.SelectSeasonFragment;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements IntroFragment.OnFragmentInteractionListener, SelectSeasonFragment.OnFragmentSelectionSeason {
     public static final String KEY_SEASON = "season";
     private FragmentManager mFragmentManager = getSupportFragmentManager();

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -18,7 +17,7 @@ import com.solodilov.evgen.valzho.fragments.FullCardModelFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SeasonCategoryActivity extends AppCompatActivity implements MyRVAdapter.OnShowCardModel {
+public class SeasonCategoryActivity extends BaseActivity implements MyRVAdapter.OnShowCardModel {
 
     @BindView(R.id.vp_fragment_container)
     ViewPager mViewPager;

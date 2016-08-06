@@ -113,9 +113,9 @@ public class IntroFragment extends Fragment {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
-                isInternet = testInternet.isNetworkAvailable();
+         //       isInternet = testInternet.isNetworkAvailable();
             }
-            return isInternet;
+            return true;//isInternet;
         }
 
         @Override

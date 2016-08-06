@@ -16,17 +16,22 @@ import java.util.List;
 
 public class FirebaseRepository implements ModelRepository {
     private static final String LOG = FirebaseRepository.class.getCanonicalName();
+    private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth mAuth;
-    private List<Model> modelList = new LinkedList<>();
+    private List<Model> modelList;
     private ObserverRepository mObserverRepository;
 
+    public FirebaseRepository() {
+        firebaseDatabase=FirebaseDatabase.getInstance();
+        modelList = new LinkedList<>();
+    }
 
     @Override
     public void loadModelList(Seasons season) {
         if (mAuth == null) {
             mAuth = FirebaseAuth.getInstance();
         }
-        DatabaseReference mReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference mReference = firebaseDatabase.getReference();
         if (season == Seasons.ALL) {
             for (Seasons s : Seasons.values()) {
                 if (s != Seasons.ALL)
