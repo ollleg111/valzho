@@ -1,6 +1,8 @@
 package com.solodilov.evgen.valzho.fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,8 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.solodilov.evgen.valzho.R;
-
-import java.util.concurrent.TimeUnit;
+import com.solodilov.evgen.valzho.connections.TestInternet;
 
 public class IntroFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
@@ -41,7 +42,7 @@ public class IntroFragment extends Fragment {
     public void onResume() {
         super.onResume();
         mProgressBar.setVisibility(View.VISIBLE);
-        new MyTask().execute();
+        new MyTask(getActivity()).execute();
 
     }
 
@@ -73,17 +74,43 @@ public class IntroFragment extends Fragment {
         void onFragmentInteraction();
     }
 
-    private class MyTask extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                // test Internet connection
-                TimeUnit.SECONDS.sleep(1);
-                onButtonPressed();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return null;
+    private class MyTask extends AsyncTask<Void, Void, Boolean> {
+        private Context context;
+
+        MyTask(Context context) {
+            this.context = context;
         }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            TestInternet testInternet = new TestInternet(context);
+            return testInternet.isNetworkAvailable();
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            if (aBoolean) {
+                onButtonPressed();
+            } else {
+                mShowAlertDialog(context);
+            }
+        }
+    }
+
+    private void mShowAlertDialog(final Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder
+                .setTitle("Error connection!")
+                .setMessage("There is no Internet connection")
+                .setCancelable(false)
+                .setNegativeButton("ОК!", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        new MyTask(context).execute();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
