@@ -13,4 +13,5 @@
     <string name="text_all">All</string>
     <string name="photo">The best</string>
     <string name="models_are_not_ready">The models for this season is still not ready.</string>
+    <string name="title_activity_base">BaseActivity</string>
 </resources>

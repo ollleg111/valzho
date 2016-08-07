@@ -29,6 +29,7 @@ import butterknife.ButterKnife;
 
 public class SeasonCategoryFragment extends Fragment implements ObserverRepository {
     private static final String ARG_SECTION_SEASON = "section_season";
+    private static final String LOG = SeasonCategoryFragment.class.getCanonicalName();
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;

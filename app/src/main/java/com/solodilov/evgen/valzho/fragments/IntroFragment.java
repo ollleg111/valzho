@@ -55,7 +55,8 @@ public class IntroFragment extends Fragment {
         Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_intro_text);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void onAnimationStart(Animation animation) {}
+            public void onAnimationStart(Animation animation) {
+            }
 
             @Override
             public void onAnimationEnd(Animation animation) {
@@ -63,7 +64,8 @@ public class IntroFragment extends Fragment {
             }
 
             @Override
-            public void onAnimationRepeat(Animation animation) {}
+            public void onAnimationRepeat(Animation animation) {
+            }
         });
         mTvIntro.startAnimation(animation);
     }
@@ -113,7 +115,7 @@ public class IntroFragment extends Fragment {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
-         //       isInternet = testInternet.isNetworkAvailable();
+                isInternet = testInternet.isNetworkAvailable();
             }
             return true;//isInternet;
         }

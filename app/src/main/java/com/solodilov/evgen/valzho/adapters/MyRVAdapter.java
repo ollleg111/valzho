@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.solodilov.evgen.valzho.R;
 import com.solodilov.evgen.valzho.api.Model;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -45,16 +46,16 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         if (mModelList != null) {
-            Model model = mModelList.get(position);
+            final Model model = mModelList.get(position);
             holder.mTvModelName.setText(model.getmModelName());
             holder.mTvAvailableSize.setText(model.getmArraySize());
 
             if (model.getmPhotoURL() != null) {
                 Picasso.with(holder.mTitleImage.getContext())
                         .load(model.getmPhotoURL().get(0))
+                        .networkPolicy(NetworkPolicy.OFFLINE)
                         .fit()
                         .centerInside()
-                        .error(R.drawable.no_photo)
                         .into(holder.mTitleImage, new com.squareup.picasso.Callback() {
                             @Override
                             public void onSuccess() {
@@ -64,13 +65,30 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
 
                             @Override
                             public void onError() {
-                                holder.showImages(true);
-                                Log.d(LOG_, "2222222");
+                                Picasso.with(holder.mTitleImage.getContext())
+                                        .load(model.getmPhotoURL().get(0))
+                                        .fit()
+                                        .centerInside()
+                                        .error(R.drawable.no_photo)
+                                        .into(holder.mTitleImage, new com.squareup.picasso.Callback() {
+                                                    @Override
+                                                    public void onSuccess() {
+                                                        holder.showImages(true);
+                                                        Log.d(LOG_, "1111111");
+                                                    }
+
+                                                    @Override
+                                                    public void onError() {
+                                                        holder.showImages(true);
+                                                        Log.d(LOG_, "2222222");
+                                                    }
+                                                }
+                                        );
                             }
                         });
-
-            } else holder.showImages(true);
-        } else holder.showImages(true);
+            }
+        }
+        holder.showImages(true);
     }
 
     @Override

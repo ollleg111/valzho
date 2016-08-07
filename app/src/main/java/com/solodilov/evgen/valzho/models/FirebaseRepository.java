@@ -22,7 +22,7 @@ public class FirebaseRepository implements ModelRepository {
     private ObserverRepository mObserverRepository;
 
     public FirebaseRepository() {
-        firebaseDatabase=FirebaseDatabase.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
         modelList = new LinkedList<>();
     }
 
@@ -66,6 +66,7 @@ public class FirebaseRepository implements ModelRepository {
             }
         });
     }
+
 
     @Override
     public void registerObserver(ObserverRepository o) {
