@@ -51,10 +51,5 @@ public class SeasonCategoryActivity extends BaseActivity implements MyRVAdapter.
     public void onShowCardModel(Model model) {
         FullCardModelFragment fragment = FullCardModelFragment.newInstance(model);
         fragment.show(mFragmentManager,null);
-//        mFragmentManager
-//                .beginTransaction()
-//                .replace(R.id.main_content, FullCardModelFragment.newInstance(model))
-//                .addToBackStack("")
-//                .commit();
     }
 }

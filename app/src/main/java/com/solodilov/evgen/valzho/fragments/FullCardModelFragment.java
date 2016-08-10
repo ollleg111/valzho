@@ -44,7 +44,7 @@ public class FullCardModelFragment extends DialogFragment {
     public void onResume() {
         super.onResume();
         Window window = getDialog().getWindow();
-        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         window.setGravity(Gravity.CENTER);
     }
 
@@ -52,7 +52,6 @@ public class FullCardModelFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mModel = (Model) getArguments().getSerializable(ARG_SECTION_MODEL);
-        getDialog().setTitle(mModel.getmModelName());
         View rootView = inflater.inflate(R.layout.fragment_full_card_model, container);
         ButterKnife.bind(this, rootView);
         SeasonCategoryActivity seasonCategoryActivity = (SeasonCategoryActivity) getActivity();
@@ -65,7 +64,6 @@ public class FullCardModelFragment extends DialogFragment {
         mTv.setText(mModel.getmModelName());
         mTvDescription.setText(mModel.getmDescription());
         mTvArraySize.setText(mModel.getmArraySize());
-        getActivity().setTitle(mModel.getmModelName());
     }
 
     @Override
