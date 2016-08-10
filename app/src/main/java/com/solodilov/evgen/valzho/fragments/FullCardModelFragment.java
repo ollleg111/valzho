@@ -54,8 +54,6 @@ public class FullCardModelFragment extends DialogFragment {
         mModel = (Model) getArguments().getSerializable(ARG_SECTION_MODEL);
         View rootView = inflater.inflate(R.layout.fragment_full_card_model, container);
         ButterKnife.bind(this, rootView);
-        SeasonCategoryActivity seasonCategoryActivity = (SeasonCategoryActivity) getActivity();
-        seasonCategoryActivity.setVisibleToolBar(false);
         return rootView;
     }
 
@@ -86,8 +84,7 @@ public class FullCardModelFragment extends DialogFragment {
             mModel = (Model) savedInstanceState.getSerializable(ARG_SECTION_MODEL);
             MyViewPagerAdapter myPagerAdapter = (MyViewPagerAdapter) mViewPager.getAdapter();
             myPagerAdapter.restoreAdapter(mModel.getmPhotoURL());
-            myPagerAdapter.notifyDataSetChanged();
-        }
+           }
     }
 
     @Override

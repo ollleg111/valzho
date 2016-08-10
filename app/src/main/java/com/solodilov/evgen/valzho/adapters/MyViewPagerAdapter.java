@@ -46,9 +46,10 @@ public class MyViewPagerAdapter extends PagerAdapter {
                     .load(mListPhoto.get(position))
                     .error(R.drawable.no_photo)
                     .into(mImageView, new com.squareup.picasso.Callback() {
+                        ProgressBar p = mProgresBar;
                         @Override
                         public void onSuccess() {
-                            mProgresBar.setVisibility(View.GONE);
+                            p.setVisibility(View.GONE);
                         }
 
                         @Override
@@ -68,5 +69,6 @@ public class MyViewPagerAdapter extends PagerAdapter {
 
     public void restoreAdapter(List<String> uriList) {
         mListPhoto = uriList;
+        notifyDataSetChanged();
     }
 }
