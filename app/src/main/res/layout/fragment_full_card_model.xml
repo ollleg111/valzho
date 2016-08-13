@@ -18,6 +18,27 @@
             android:contentDescription="@string/photo"
             app:layout_heightPercent="50%" />
 
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/arrow_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@id/vp_collection_photo"
+            android:background="#01000000"
+            android:src="@drawable/ic_ab_back_holo_light_am"
+            android:visibility="invisible" />
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/arrow_forward"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/vp_collection_photo"
+            android:background="#01000000"
+            android:rotation="180"
+            android:src="@drawable/ic_ab_back_holo_light_am"
+            android:visibility="invisible" />
+
         <TextView
             android:id="@+id/tv_big_model_name"
             android:layout_width="match_parent"
@@ -40,14 +61,14 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_below="@id/tv_big_array_size"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@id/tv_big_array_size">
 
             <TextView
                 android:id="@+id/tv_big_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                 android:textSize="16sp"
+                android:textSize="16sp"
                 tools:text="Many description modell!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11 1!!!!!!!!!!!!!!!!!!!!!!!!" />
         </ScrollView>
     </android.support.percent.PercentRelativeLayout>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.solodilov.evgen.valzho.R;
@@ -19,7 +20,7 @@ import com.solodilov.evgen.valzho.api.Model;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class FullCardModelFragment extends DialogFragment {
+public class FullCardModelFragment extends DialogFragment implements View.OnClickListener {
 
     private static final String ARG_SECTION_MODEL = "model";
     private Model mModel;
@@ -31,6 +32,10 @@ public class FullCardModelFragment extends DialogFragment {
     TextView mTvDescription;
     @BindView(R.id.tv_big_array_size)
     TextView mTvArraySize;
+    @BindView(R.id.arrow_back)
+    ImageButton mArowBack;
+    @BindView(R.id.arrow_forward)
+    ImageButton mArowForward;
 
     public static FullCardModelFragment newInstance(Model model) {
         FullCardModelFragment fragment = new FullCardModelFragment();
@@ -67,7 +72,11 @@ public class FullCardModelFragment extends DialogFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewPager.setAdapter(new MyViewPagerAdapter(getContext(), mModel.getmPhotoURL()));
+        MyViewPagerAdapter pagerAdapter = new MyViewPagerAdapter(getContext(), mModel.getmPhotoURL());
+        mViewPager.setAdapter(pagerAdapter);
+        if (pagerAdapter.getCount() > 1) {
+            activateArrow();
+        }
     }
 
     @Override
@@ -84,7 +93,7 @@ public class FullCardModelFragment extends DialogFragment {
             mModel = (Model) savedInstanceState.getSerializable(ARG_SECTION_MODEL);
             MyViewPagerAdapter myPagerAdapter = (MyViewPagerAdapter) mViewPager.getAdapter();
             myPagerAdapter.restoreAdapter(mModel.getmPhotoURL());
-           }
+        }
     }
 
     @Override
@@ -93,4 +102,27 @@ public class FullCardModelFragment extends DialogFragment {
         super.onSaveInstanceState(outState);
     }
 
+    private void activateArrow() {
+        mArowBack.setVisibility(View.VISIBLE);
+        mArowForward.setVisibility(View.VISIBLE);
+        mArowForward.setOnClickListener(this);
+        mArowBack.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.arrow_back:
+                mViewPager.setCurrentItem(getItem(-1),true);
+                break;
+            case R.id.arrow_forward:
+                mViewPager.setCurrentItem(getItem(+1),true);
+                break;
+            default:
+        }
+    }
+
+    private int getItem(int i) {
+        return mViewPager.getCurrentItem()+i;
+    }
 }

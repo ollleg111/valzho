@@ -19,10 +19,6 @@ import butterknife.ButterKnife;
 public class MyViewPagerAdapter extends PagerAdapter {
     private List<String> mListPhoto;
     private Context mContext;
-    @BindView(R.id.image_view_photo)
-    ImageView mImageView;
-    @BindView(R.id.image_view_photo_progress)
-    ProgressBar mProgresBar;
 
     public MyViewPagerAdapter(Context context, List<String> listPhoto) {
         mListPhoto = listPhoto;
@@ -39,22 +35,22 @@ public class MyViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, final int position) {
         LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rootView = layoutInflater.inflate(R.layout.custom_pager_image_view, container, false);
-        ButterKnife.bind(this, rootView);
+        final Holder holder = new Holder(rootView);
         if (mListPhoto != null && mListPhoto.size() > 0) {
-            mProgresBar.setVisibility(View.VISIBLE);
-            Picasso.with(mImageView.getContext())
+            holder.mProgressBar.setVisibility(View.VISIBLE);
+            Picasso.with(holder.mImageView.getContext())
                     .load(mListPhoto.get(position))
                     .error(R.drawable.no_photo)
-                    .into(mImageView, new com.squareup.picasso.Callback() {
-                        ProgressBar p = mProgresBar;
+                    .into(holder.mImageView, new com.squareup.picasso.Callback() {
+
                         @Override
                         public void onSuccess() {
-                            p.setVisibility(View.GONE);
+                            holder.mProgressBar.setVisibility(View.GONE);
                         }
 
                         @Override
                         public void onError() {
-                            mProgresBar.setVisibility(View.GONE);
+                            holder.mProgressBar.setVisibility(View.GONE);
                         }
                     });
         }
@@ -70,5 +66,18 @@ public class MyViewPagerAdapter extends PagerAdapter {
     public void restoreAdapter(List<String> uriList) {
         mListPhoto = uriList;
         notifyDataSetChanged();
+    }
+
+    class Holder{
+        @BindView(R.id.image_view_photo)
+        ImageView mImageView;
+        @BindView(R.id.image_view_photo_progress)
+        ProgressBar mProgressBar;
+
+
+        public Holder(View view) {
+            ButterKnife.bind(this, view);
+
+        }
     }
 }

@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -35,6 +36,8 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
     RecyclerView mRecyclerView;
     @BindView(R.id.master_layout)
     RelativeLayout mLayoutMaster;
+    @BindView(R.id.progress_wait_load)
+    ProgressBar mProgressBar;
 
     private Seasons mSeason;
     private ModelRepository mModelRepository;
@@ -70,6 +73,7 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
         super.onActivityCreated(savedInstanceState);
         mModelRepository = new FirebaseRepository();
         mMyRVAdapter = new MyRVAdapter(null, getContext());
+        mProgressBar.setVisibility(View.VISIBLE);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         } else {
@@ -108,6 +112,7 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
             TextView tempTextView = createTempTextView();
             mLayoutMaster.addView(tempTextView);
         }
+        mProgressBar.setVisibility(View.GONE);
     }
 
     private TextView createTempTextView() {

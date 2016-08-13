@@ -56,6 +56,7 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
                         .networkPolicy(NetworkPolicy.OFFLINE)
                         .fit()
                         .centerInside()
+                        .error(R.drawable.no_photo)
                         .into(holder.mTitleImage, new com.squareup.picasso.Callback() {
                             @Override
                             public void onSuccess() {
@@ -65,6 +66,7 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
 
                             @Override
                             public void onError() {
+                                holder.mProgressBar.setVisibility(View.VISIBLE);
                                 Picasso.with(holder.mTitleImage.getContext())
                                         .load(model.getmPhotoURL().get(0))
                                         .fit()

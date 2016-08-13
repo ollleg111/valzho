@@ -44,7 +44,7 @@ public class FirebaseRepository implements ModelRepository {
 
     private void getDataSeason(Seasons season, DatabaseReference mReference) {
         DatabaseReference mReferenceChild = mReference.child(season.name());
-        mReferenceChild.addListenerForSingleValueEvent(new ValueEventListener() {
+        mReferenceChild.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChildren()) {
