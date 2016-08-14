@@ -30,6 +30,7 @@ public class SelectSeasonFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_select_season, container, false);
         ButterKnife.bind(this, rootView);
+
         return rootView;
     }
 

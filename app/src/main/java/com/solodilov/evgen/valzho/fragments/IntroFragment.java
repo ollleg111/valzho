@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.solodilov.evgen.valzho.R;
-import com.solodilov.evgen.valzho.connections.TestInternet;
 
 import java.util.concurrent.TimeUnit;
 
@@ -41,6 +40,7 @@ public class IntroFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_intro, container, false);
     }
 
@@ -55,9 +55,6 @@ public class IntroFragment extends Fragment {
         super.onResume();
         setStartAnimations();
     }
-
-
-
 
     @Override
     public void onAttach(Context context) {
@@ -96,16 +93,12 @@ public class IntroFragment extends Fragment {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            TestInternet testInternet = new TestInternet(context);
-            boolean isInternet;
             try {
                 TimeUnit.SECONDS.sleep(2);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            } finally {
-                isInternet = testInternet.isNetworkAvailable();
             }
-            return true;//isInternet;
+            return true;
         }
 
         @Override

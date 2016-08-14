@@ -3,6 +3,7 @@ package com.solodilov.evgen.valzho.activitys;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.view.Window;
 
 import com.solodilov.evgen.valzho.R;
 import com.solodilov.evgen.valzho.Seasons;
@@ -17,6 +18,7 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             startIntroFragment();
@@ -24,6 +26,7 @@ public class MainActivity extends BaseActivity
     }
 
     private void startIntroFragment() {
+        getSupportActionBar().hide();
         mFragmentManager
                 .beginTransaction()
                 .add(R.id.fl_main_container, IntroFragment.newInstance())
@@ -36,6 +39,7 @@ public class MainActivity extends BaseActivity
                 .beginTransaction()
                 .replace(R.id.fl_main_container, SelectSeasonFragment.newInstance())
                 .commit();
+        getSupportActionBar().show();
     }
 
     @Override

@@ -22,14 +22,19 @@
         <activity
             android:name=".activitys.SeasonCategoryActivity"
             android:label="@string/title_activity_season_category"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".activitys.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activitys.MainActivity"  />
+        </activity>
         <activity
             android:name=".activitys.BaseActivity"
             android:label="@string/title_activity_base"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activitys.AboutActivity"
-            android:label="@string/label_about"/>
+            android:label="@string/label_about" />
     </application>
 
 </manifest>

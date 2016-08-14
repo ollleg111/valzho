@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.solodilov.evgen.valzho.R;
@@ -34,6 +35,7 @@ public class SeasonCategoryActivity extends BaseActivity implements MyRVAdapter.
         setContentView(R.layout.activity_season_category);
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(this, mFragmentManager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -50,6 +52,16 @@ public class SeasonCategoryActivity extends BaseActivity implements MyRVAdapter.
     @Override
     public void onShowCardModel(Model model) {
         FullCardModelFragment fragment = FullCardModelFragment.newInstance(model);
-        fragment.show(mFragmentManager,null);
+        fragment.show(mFragmentManager, null);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
