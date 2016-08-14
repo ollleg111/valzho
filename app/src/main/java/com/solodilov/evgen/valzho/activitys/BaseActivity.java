@@ -30,8 +30,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.app_close:
-                break;
             case R.id.app_resume:
                 Intent intent = new Intent(this,AboutActivity.class);
                 startActivity(intent);
