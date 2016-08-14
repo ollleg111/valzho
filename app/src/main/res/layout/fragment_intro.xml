@@ -2,19 +2,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright"
+    android:padding="16dp"
     tools:context="com.solodilov.evgen.valzho.fragments.IntroFragment">
 
-    <TextView
-        android:id="@+id/tv_intro"
+    <ImageView
+        android:id="@+id/image_intro"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="VAL_ZHO"
-        android:textColor="@android:color/black"
-        android:textSize="72sp"
-        android:textStyle="bold|italic" />
+        android:layout_margin="16dp"
+        android:src="@drawable/logo" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -23,7 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#00000000"
-        android:visibility="gone"
         android:progress="@android:integer/config_mediumAnimTime"
-        />
+        android:visibility="gone" />
 </RelativeLayout>

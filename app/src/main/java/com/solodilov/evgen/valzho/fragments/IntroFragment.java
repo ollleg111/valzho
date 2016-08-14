@@ -1,5 +1,7 @@
 package com.solodilov.evgen.valzho.fragments;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,10 +12,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.solodilov.evgen.valzho.R;
 import com.solodilov.evgen.valzho.connections.TestInternet;
@@ -26,8 +27,8 @@ import butterknife.ButterKnife;
 public class IntroFragment extends Fragment {
     @BindView(R.id.progressBar)
     ProgressBar mProgressBar;
-    @BindView(R.id.tv_intro)
-    TextView mTvIntro;
+    @BindView(R.id.image_intro)
+    ImageView mImageIntro;
     private OnFragmentInteractionListener mListener;
 
     public static IntroFragment newInstance() {
@@ -52,23 +53,10 @@ public class IntroFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_intro_text);
-        animation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                new MyTask(getActivity()).execute();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
-        });
-        mTvIntro.startAnimation(animation);
+        setStartAnimations();
     }
+
+
 
 
     @Override
@@ -151,5 +139,22 @@ public class IntroFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction();
         }
+    }
+
+    private void setStartAnimations() {
+        mImageIntro.setScaleX(0.1f);
+        mImageIntro.setScaleY(0.1f);
+        mImageIntro.animate()
+                .scaleX(1)
+                .scaleY(1)
+                .rotationY(-360)
+                .setDuration(1500)
+                .setInterpolator(new DecelerateInterpolator())
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        new MyTask(getActivity()).execute();
+                    }
+                });
     }
 }
