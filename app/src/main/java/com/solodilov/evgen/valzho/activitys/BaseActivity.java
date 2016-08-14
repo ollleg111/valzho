@@ -1,5 +1,6 @@
 package com.solodilov.evgen.valzho.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -32,6 +33,8 @@ public class BaseActivity extends AppCompatActivity {
             case R.id.app_close:
                 break;
             case R.id.app_resume:
+                Intent intent = new Intent(this,AboutActivity.class);
+                startActivity(intent);
                 break;
         }
         return true;

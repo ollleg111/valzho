@@ -12,7 +12,7 @@ import com.solodilov.evgen.valzho.fragments.SelectSeasonFragment;
 public class MainActivity extends BaseActivity
         implements IntroFragment.OnFragmentInteractionListener, SelectSeasonFragment.OnFragmentSelectionSeason {
     public static final String KEY_SEASON = "season";
-    private FragmentManager mFragmentManager = getSupportFragmentManager();
+    protected FragmentManager mFragmentManager = getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
