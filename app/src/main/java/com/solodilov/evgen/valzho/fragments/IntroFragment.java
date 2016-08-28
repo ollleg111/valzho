@@ -9,6 +9,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,7 @@ public class IntroFragment extends Fragment {
     @BindView(R.id.image_intro)
     ImageView mImageIntro;
     private OnFragmentInteractionListener mListener;
+    private MainActivity mActivity;
 
     public static IntroFragment newInstance() {
         IntroFragment fragment = new IntroFragment();
@@ -41,7 +44,13 @@ public class IntroFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity)getActivity()).getSupportActionBar().hide();
+        mActivity = (MainActivity) getActivity();
+        ActionBar actionBar = mActivity.getSupportActionBar();
+        if (actionBar != null)
+            actionBar.hide();
+
+        mActivity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        mActivity.getDrawerLayout().closeDrawers();
         return inflater.inflate(R.layout.fragment_intro, container, false);
     }
 
@@ -72,6 +81,7 @@ public class IntroFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        mActivity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
     }
 
     public interface OnFragmentInteractionListener {
@@ -79,39 +89,6 @@ public class IntroFragment extends Fragment {
         void onFragmentInteraction();
     }
 
-    private class MyTask extends AsyncTask<Void, Void, Boolean> {
-        private Context context;
-
-        MyTask(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mProgressBar.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            try {
-                TimeUnit.SECONDS.sleep(2);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean aBoolean) {
-            super.onPostExecute(aBoolean);
-            if (aBoolean) {
-                onButtonPressed();
-            } else {
-                mShowAlertDialog(context);
-            }
-        }
-    }
 
     private void mShowAlertDialog(final Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -150,5 +127,39 @@ public class IntroFragment extends Fragment {
                         new MyTask(getActivity()).execute();
                     }
                 });
+    }
+
+    private class MyTask extends AsyncTask<Void, Void, Boolean> {
+        private Context context;
+
+        MyTask(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            if (aBoolean) {
+                onButtonPressed();
+            } else {
+                mShowAlertDialog(context);
+            }
+        }
     }
 }

@@ -17,6 +17,11 @@ import com.solodilov.evgen.valzho.Seasons;
 
 public abstract class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static FirebaseDatabase firebaseDatabase;
+
+    public DrawerLayout getDrawerLayout() {
+        return mDrawerLayout;
+    }
+
     private DrawerLayout mDrawerLayout;
 
     @Override
@@ -69,7 +74,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                 displaySelectedSeason(Seasons.AUTUMN);
                 break;
         }
-        mDrawerLayout.closeDrawer(GravityCompat.START);
+        mDrawerLayout.closeDrawers();
         return true;
     }
 
@@ -89,7 +94,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     @Override
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
+            mDrawerLayout.closeDrawers();
         } else {
             super.onBackPressed();
         }
