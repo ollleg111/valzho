@@ -17,4 +17,6 @@
     <string name="label_about">About application</string>
     <string name="create_by_yevhen_solodilov">Create by Yevhen Solodilov</string>
     <string name="about_description">Торговая марка обуви VAL ZHO - занимается производством женской кожаной обуви с 1996 года по настоящее время. Наша фабрика обуви VAL ZHO размещена в Днепропетровске и зарекомендовала себя с положительной стороны, о чем свидетельствует многоглетнее сотрудничество с нашими постоянными любимыми оптовыми покупателями. Основное направление деятельности производителя обуви VAL ZHO - производство молодежной женской обуви с учетом мировых модных тенденций, а так-же Ваших индивидуальных пожеланий. Помимо того, что мы идём в ногу со временем, следуя модным течениям, базовая коллекция классической женской обуви всегда имеет место в нашем ежегодном ассортименте.</string>
+    <string name="navigation_drawer_open">open drawer navigation</string>
+    <string name="navigation_drawer_close">close drawer navigation</string>
 </resources>

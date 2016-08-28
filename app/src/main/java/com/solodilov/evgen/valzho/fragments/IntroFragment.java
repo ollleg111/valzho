@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.solodilov.evgen.valzho.R;
+import com.solodilov.evgen.valzho.activitys.MainActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,7 +41,7 @@ public class IntroFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        ((MainActivity)getActivity()).getSupportActionBar().hide();
         return inflater.inflate(R.layout.fragment_intro, container, false);
     }
 

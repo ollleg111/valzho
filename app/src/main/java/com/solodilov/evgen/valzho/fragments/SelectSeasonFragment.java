@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.solodilov.evgen.valzho.R;
 import com.solodilov.evgen.valzho.Seasons;
+import com.solodilov.evgen.valzho.activitys.MainActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -28,9 +29,9 @@ public class SelectSeasonFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        ((MainActivity)getActivity()).getSupportActionBar().show();
         View rootView = inflater.inflate(R.layout.fragment_select_season, container, false);
         ButterKnife.bind(this, rootView);
-
         return rootView;
     }
 
