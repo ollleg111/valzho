@@ -46,9 +46,9 @@ public class IntroFragment extends Fragment {
                              Bundle savedInstanceState) {
         mActivity = (MainActivity) getActivity();
         ActionBar actionBar = mActivity.getSupportActionBar();
-        if (actionBar != null)
+        if (actionBar != null) {
             actionBar.hide();
-
+        }
         mActivity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         mActivity.getDrawerLayout().closeDrawers();
         return inflater.inflate(R.layout.fragment_intro, container, false);
@@ -130,7 +130,7 @@ public class IntroFragment extends Fragment {
     }
 
     private class MyTask extends AsyncTask<Void, Void, Boolean> {
-        private Context context;
+        private final Context context;
 
         MyTask(Context context) {
             this.context = context;

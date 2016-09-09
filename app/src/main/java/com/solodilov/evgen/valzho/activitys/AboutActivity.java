@@ -1,6 +1,5 @@
 package com.solodilov.evgen.valzho.activitys;
 
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -12,7 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AboutActivity extends AppCompatActivity {
-@BindView(R.id.about_text_version)
+    @BindView(R.id.about_text_version)
     TextView mTextVersion;
 
     @Override
@@ -20,8 +19,7 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         ButterKnife.bind(this);
-        String strVersion = "Version: "+ BuildConfig.VERSION_NAME;
+        String strVersion = "Version: " + BuildConfig.VERSION_NAME;
         mTextVersion.setText(strVersion);
     }
-
 }

@@ -2,7 +2,6 @@ package com.solodilov.evgen.valzho.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.solodilov.evgen.valzho.R;
@@ -10,13 +9,9 @@ import com.solodilov.evgen.valzho.Seasons;
 import com.solodilov.evgen.valzho.activitys.SeasonCategoryActivity;
 import com.solodilov.evgen.valzho.fragments.SeasonCategoryFragment;
 
-/**
- * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
 public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
-    private SeasonCategoryActivity seasonCategoryActivity;
+    private final SeasonCategoryActivity seasonCategoryActivity;
 
     public SectionsPagerAdapter(SeasonCategoryActivity seasonCategoryActivity, FragmentManager fm) {
         super(fm);

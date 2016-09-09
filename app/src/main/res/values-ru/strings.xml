@@ -1,25 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Val Zho</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="title_activity_season_category">SeasonCategory</string>
-    <string name="text_winter">Winter</string>
-    <string name="text_spring">Spring</string>
-    <string name="text_summer">Summer</string>
-    <string name="text_autumn">Autumn</string>
-    <string name="text_all">All</string>
-    <string name="photo">The best</string>
-    <string name="models_are_not_ready">The models for this season is still not ready.</string>
-    <string name="label_about">About application</string>
-    <string name="create_by_yevhen_solodilov" translatable="false">Create by Yevhen Solodilov</string>
     <string name="about_description">Торговая марка обуви VAL ZHO - занимается производством женской кожаной обуви с 1996 года по настоящее время. Наша фабрика обуви VAL ZHO размещена в Днепропетровске и зарекомендовала себя с положительной стороны, о чем свидетельствует многоглетнее сотрудничество с нашими постоянными любимыми оптовыми покупателями. Основное направление деятельности производителя обуви VAL ZHO - производство молодежной женской обуви с учетом мировых модных тенденций, а так-же Ваших индивидуальных пожеланий. Помимо того, что мы идём в ногу со временем, следуя модным течениям, базовая коллекция классической женской обуви всегда имеет место в нашем ежегодном ассортименте.</string>
-    <string name="navigation_drawer_open" translatable="false">open drawer navigation</string>
-    <string name="navigation_drawer_close" translatable="false">close drawer navigation</string>
-    <string name="desc_intro" translatable="false">intro</string>
-    <string name="desc_category_winter">Category winter</string>
-    <string name="desc_category_spring">Category spring</string>
-    <string name="desc_category_summer">Category summer</string>
-    <string name="desc_category_autumn">Category autumn</string>
-    <string name="desc_brand_logo">Brand LOGO</string>
-    <string name="text_about">About</string>
+    <string name="desc_brand_logo">Логотип</string>
+    <string name="desc_category_autumn">Категория - Осень</string>
+    <string name="desc_category_spring">Категория - Весна</string>
+    <string name="desc_category_summer">Категория - Лето</string>
+    <string name="desc_category_winter">Категория - Зима</string>
+    <string name="label_about">О программе</string>
+    <string name="models_are_not_ready">Модели для этого сезона - отсутствуют</string>
+    <string name="photo">Фото</string>
+    <string name="text_about">Описание</string>
+    <string name="text_all">Все</string>
+    <string name="text_autumn">Осень</string>
+    <string name="text_spring">Весна</string>
+    <string name="text_summer">Лето</string>
+    <string name="text_winter">Зима</string>
+    <string name="title_activity_season_category">Сезоны</string>
 </resources>

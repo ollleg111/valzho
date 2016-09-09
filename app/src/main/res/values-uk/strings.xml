@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Val Zho</string>
+    <string name="desc_brand_logo">Логотип</string>
+    <string name="desc_category_autumn">Категорія - Осінь</string>
+    <string name="desc_category_spring">Категорія - Весна</string>
+    <string name="desc_category_summer">Категорія - Літо</string>
+    <string name="desc_category_winter">Категорія - Зима</string>
+    <string name="label_about">Про програму</string>
+    <string name="models_are_not_ready">Моделі для цього сезону - відсутні</string>
+    <string name="text_about">Про програму</string>
+    <string name="text_all">Все</string>
+    <string name="text_autumn">Осінь</string>
+    <string name="text_spring">Весна</string>
+    <string name="text_summer">Літо</string>
+    <string name="text_winter">Зима</string>
+    <string name="title_activity_season_category">Сезони</string>
+    <string name="photo">Фото</string>
+    <string name="about_description">Торгова марка взуття VAL ZHO - займається виробництвом жіночого шкіряного взуття з 1996 року по теперішній час. Наша фабрика взуття VAL ZHO розміщена в Дніпропетровську і зарекомендувала себе з позитивного боку, про що свідчить многоглетнее співпрацю з нашими постійними улюбленими оптовими покупцями. Основний напрямок діяльності виробника взуття VAL ZHO - виробництво молодіжного жіночого взуття з урахуванням світових модних тенденцій, а так-же з Вашими індивідуальними побажаннями. Крім того, що ми йдемо в ногу з часом, слідуючи модним течіям, базова колекція класичної жіночого взуття завжди має місце в нашому щорічному асортименті. </string>
+</resources>

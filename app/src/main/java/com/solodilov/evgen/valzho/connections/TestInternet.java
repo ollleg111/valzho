@@ -5,7 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 public class TestInternet {
-    private Context mContext;
+    private final Context mContext;
 
     public TestInternet(Context context) {
         mContext = context;

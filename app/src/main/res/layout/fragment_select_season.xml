@@ -20,11 +20,11 @@
         android:layout_margin="6dp"
         app:cardCornerRadius="15dp">
         <ImageView
-            android:id="@+id/winter_img"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/title_winter" />
+            android:src="@drawable/title_winter"
+            android:contentDescription="@string/desc_category_winter" />
         <TextView
             android:text="@string/text_winter"
             style="@style/style_title_text"
@@ -38,6 +38,7 @@
         android:layout_height="match_parent"
         android:layout_alignBottom="@id/anchor"
         android:layout_alignLeft="@id/anchor"
+        android:layout_alignStart="@id/anchor"
         android:layout_margin="6dp"
         app:cardCornerRadius="15dp">
 
@@ -46,7 +47,8 @@
             android:layout_height="match_parent"
             android:background="@android:color/holo_blue_dark"
             android:scaleType="centerCrop"
-            android:src="@drawable/title_spring" />
+            android:src="@drawable/title_spring"
+            android:contentDescription="@string/desc_category_spring" />
         <TextView
             android:text="@string/text_spring"
             style="@style/style_title_text"
@@ -58,6 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignRight="@id/anchor"
+        android:layout_alignEnd="@id/anchor"
         android:layout_alignTop="@id/anchor"
         android:layout_margin="6dp"
         app:cardCornerRadius="15dp">
@@ -67,7 +70,8 @@
             android:layout_height="match_parent"
             android:background="@android:color/holo_blue_dark"
             android:scaleType="centerCrop"
-            android:src="@drawable/title_summer" />
+            android:src="@drawable/title_summer"
+            android:contentDescription="@string/desc_category_summer" />
         <TextView
             android:text="@string/text_summer"
             style="@style/style_title_text"
@@ -79,6 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignLeft="@id/anchor"
+        android:layout_alignStart="@id/anchor"
         android:layout_alignTop="@id/anchor"
         android:layout_margin="6dp"
         app:cardCornerRadius="15dp">
@@ -88,7 +93,8 @@
             android:layout_height="match_parent"
             android:background="@android:color/holo_blue_dark"
             android:scaleType="centerCrop"
-            android:src="@drawable/title_autumn" />
+            android:src="@drawable/title_autumn"
+            android:contentDescription="@string/desc_category_autumn" />
         <TextView
             android:text="@string/text_autumn"
             style="@style/style_title_text"

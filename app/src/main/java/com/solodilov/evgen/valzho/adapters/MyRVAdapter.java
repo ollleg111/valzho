@@ -2,7 +2,6 @@ package com.solodilov.evgen.valzho.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,14 +26,11 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
         void onShowCardModel(Model model);
     }
 
-
-    private static final String LOG_ = MyRVAdapter.class.getCanonicalName();
     private List<Model> mModelList;
-    OnShowCardModel mOnShowCardModel;
+    private final OnShowCardModel mOnShowCardModel;
 
-    public MyRVAdapter(List<Model> modelList, Context context) {
+    public MyRVAdapter(Context context) {
         mOnShowCardModel = (OnShowCardModel) context;
-        mModelList = modelList;
     }
 
     @Override
@@ -49,7 +45,6 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
             final Model model = mModelList.get(position);
             holder.mTvModelName.setText(model.getmModelName());
             holder.mTvAvailableSize.setText(model.getmArraySize());
-
             if (model.getmPhotoURL() != null) {
                 Picasso.with(holder.mTitleImage.getContext())
                         .load(model.getmPhotoURL().get(0))
@@ -60,8 +55,7 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
                         .into(holder.mTitleImage, new com.squareup.picasso.Callback() {
                             @Override
                             public void onSuccess() {
-                                holder.showImages(true);
-                                Log.d(LOG_, "1111111");
+                                holder.showImages();
                             }
 
                             @Override
@@ -75,14 +69,12 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
                                         .into(holder.mTitleImage, new com.squareup.picasso.Callback() {
                                                     @Override
                                                     public void onSuccess() {
-                                                        holder.showImages(true);
-                                                        Log.d(LOG_, "1111111");
+                                                        holder.showImages();
                                                     }
 
                                                     @Override
                                                     public void onError() {
-                                                        holder.showImages(true);
-                                                        Log.d(LOG_, "2222222");
+                                                        holder.showImages();
                                                     }
                                                 }
                                         );
@@ -90,7 +82,7 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
                         });
             }
         }
-        holder.showImages(true);
+        holder.showImages();
     }
 
     @Override
@@ -125,17 +117,11 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
         public void onClick() {
             if (mOnShowCardModel != null)
                 mOnShowCardModel.onShowCardModel(mModelList.get(getAdapterPosition()));
-            Log.d(LOG_, this.toString() + " position " + this.getAdapterPosition());
         }
 
-        public void showImages(boolean b) {
-            if (b) {
-                mProgressBar.setVisibility(View.GONE);
-                mTitleImage.setVisibility(View.VISIBLE);
-            } else {
-                mProgressBar.setVisibility(View.VISIBLE);
-                mTitleImage.setVisibility(View.GONE);
-            }
+        public void showImages() {
+            mProgressBar.setVisibility(View.GONE);
+            mTitleImage.setVisibility(View.VISIBLE);
         }
     }
 }

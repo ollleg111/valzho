@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group
-        android:id="@+id/group1"
-        android:checkableBehavior="none">
+    <group android:checkableBehavior="none">
         <item
             android:id="@+id/menu_winter"
             android:title="@string/text_winter" />
@@ -16,9 +14,7 @@
             android:id="@+id/menu_autumn"
             android:title="@string/text_autumn" />
     </group>
-    <group
-        android:id="@+id/group2"
-        android:checkableBehavior="none">
+    <group android:checkableBehavior="none">
         <item android:id="@+id/app_resume"
             android:title="@string/label_about"
             android:icon="@android:drawable/ic_menu_info_details"/>

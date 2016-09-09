@@ -9,7 +9,6 @@
     tools:openDrawer="start">
 
     <include
-        android:id="@+id/m_include"
         layout="@layout/child_activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

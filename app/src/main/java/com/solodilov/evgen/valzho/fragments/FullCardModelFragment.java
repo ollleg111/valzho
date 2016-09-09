@@ -33,9 +33,9 @@ public class FullCardModelFragment extends DialogFragment implements View.OnClic
     @BindView(R.id.tv_big_array_size)
     TextView mTvArraySize;
     @BindView(R.id.arrow_back)
-    ImageButton mArowBack;
+    ImageButton mArrowBack;
     @BindView(R.id.arrow_forward)
-    ImageButton mArowForward;
+    ImageButton mArrowForward;
 
     public static FullCardModelFragment newInstance(Model model) {
         FullCardModelFragment fragment = new FullCardModelFragment();
@@ -103,10 +103,10 @@ public class FullCardModelFragment extends DialogFragment implements View.OnClic
     }
 
     private void activateArrow() {
-        mArowBack.setVisibility(View.VISIBLE);
-        mArowForward.setVisibility(View.VISIBLE);
-        mArowForward.setOnClickListener(this);
-        mArowBack.setOnClickListener(this);
+        mArrowBack.setVisibility(View.VISIBLE);
+        mArrowForward.setVisibility(View.VISIBLE);
+        mArrowForward.setOnClickListener(this);
+        mArrowBack.setOnClickListener(this);
     }
 
     @Override

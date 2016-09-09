@@ -13,7 +13,8 @@
         android:gravity="center"
        android:paddingTop="24dp"
         android:paddingBottom="62dp"
-        android:src="@drawable/logo" />
+        android:src="@drawable/logo"
+        android:contentDescription="@string/desc_intro" />
 
     <ProgressBar
         android:id="@+id/progressBar"

@@ -29,8 +29,7 @@ public class SeasonCategoryActivity extends BaseActivity implements MyRVAdapter.
     TabLayout mTabLayout;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-    private FragmentManager mFragmentManager = getSupportFragmentManager();
+    private final FragmentManager mFragmentManager = getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +47,8 @@ public class SeasonCategoryActivity extends BaseActivity implements MyRVAdapter.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(this, mFragmentManager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, mFragmentManager);
+        mViewPager.setAdapter(sectionsPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
         Seasons season = (Seasons) getIntent().getSerializableExtra(MainActivity.KEY_SEASON);
         mViewPager.setCurrentItem(season.ordinal());
@@ -69,7 +68,6 @@ public class SeasonCategoryActivity extends BaseActivity implements MyRVAdapter.
     public void onShowCardModel(Model model) {
         FullCardModelFragment fragment = FullCardModelFragment.newInstance(model);
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_in_right);
         fragment.show(fragmentTransaction, null);
     }
 }

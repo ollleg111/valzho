@@ -17,13 +17,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MyViewPagerAdapter extends PagerAdapter {
+    private final Context mContext;
     private List<String> mListPhoto;
-    private Context mContext;
 
     public MyViewPagerAdapter(Context context, List<String> listPhoto) {
         mListPhoto = listPhoto;
         mContext = context;
-
     }
 
     @Override
@@ -42,7 +41,6 @@ public class MyViewPagerAdapter extends PagerAdapter {
                     .load(mListPhoto.get(position))
                     .error(R.drawable.no_photo)
                     .into(holder.mImageView, new com.squareup.picasso.Callback() {
-
                         @Override
                         public void onSuccess() {
                             holder.mProgressBar.setVisibility(View.GONE);
@@ -68,16 +66,14 @@ public class MyViewPagerAdapter extends PagerAdapter {
         notifyDataSetChanged();
     }
 
-    class Holder{
+    class Holder {
         @BindView(R.id.image_view_photo)
         ImageView mImageView;
         @BindView(R.id.image_view_photo_progress)
         ProgressBar mProgressBar;
 
-
         public Holder(View view) {
             ButterKnife.bind(this, view);
-
         }
     }
 }

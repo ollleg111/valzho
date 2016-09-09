@@ -12,10 +12,10 @@
         android:id="@+id/about_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:contentDescription="@string/desc_brand_logo"
-        android:src="@drawable/business_card"
-        app:layout_widthPercent="40%" />
+        app:layout_heightPercent="30%"
+        android:src="@drawable/business_card" />
 
 
     <TextView
@@ -24,34 +24,31 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:text="@string/create_by_yevhen_solodilov"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorPrimary"
+        />
 
     <TextView
         android:id="@+id/about_text_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        tools:text="Version: 0.0.1"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorPrimary"
+        tools:text="Version: 0.0.1" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/about_label_creator"
-        android:layout_toRightOf="@id/about_logo"
-        android:layout_toEndOf="@id/about_logo"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_below="@id/about_logo"
         android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:padding="4dp"
         android:background="#EDEDED"
-        android:padding="4dp">
+        android:elevation="2dp">
 
         <TextView
             android:layout_width="match_parent"

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#FAFAFA"
     android:orientation="vertical"
     android:padding="8dp">
@@ -12,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:contentDescription="My LOGO"
+        android:contentDescription="@string/desc_brand_logo"
         app:layout_heightPercent="30%"
         android:src="@drawable/business_card" />
 
@@ -36,10 +37,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textColor="@color/colorPrimary"
-        android:text="Version: 0.0.1" />
+        tools:text="Version: 0.0.1" />
 
     <ScrollView
-        android:id="@+id/about_notation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/about_label_creator"
@@ -49,8 +49,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:padding="4dp"
-        android:background="#EDEDED"
-        android:elevation="2dp">
+        android:background="#EDEDED">
 
         <TextView
             android:layout_width="match_parent"

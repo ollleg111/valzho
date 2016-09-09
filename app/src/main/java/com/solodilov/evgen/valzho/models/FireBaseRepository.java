@@ -14,14 +14,14 @@ import com.solodilov.evgen.valzho.api.Model;
 import java.util.LinkedList;
 import java.util.List;
 
-public class FirebaseRepository implements ModelRepository {
-    private static final String LOG = FirebaseRepository.class.getCanonicalName();
+public class FireBaseRepository implements ModelRepository {
+    private static final String LOG = FireBaseRepository.class.getCanonicalName();
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth mAuth;
     private List<Model> modelList;
     private ObserverRepository mObserverRepository;
 
-    public FirebaseRepository() {
+    public FireBaseRepository() {
         firebaseDatabase = FirebaseDatabase.getInstance();
         modelList = new LinkedList<>();
     }

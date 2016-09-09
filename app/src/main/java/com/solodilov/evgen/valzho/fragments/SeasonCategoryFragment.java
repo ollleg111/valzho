@@ -19,7 +19,7 @@ import com.solodilov.evgen.valzho.R;
 import com.solodilov.evgen.valzho.Seasons;
 import com.solodilov.evgen.valzho.adapters.MyRVAdapter;
 import com.solodilov.evgen.valzho.api.Model;
-import com.solodilov.evgen.valzho.models.FirebaseRepository;
+import com.solodilov.evgen.valzho.models.FireBaseRepository;
 import com.solodilov.evgen.valzho.models.ModelRepository;
 import com.solodilov.evgen.valzho.models.ObserverRepository;
 
@@ -30,7 +30,6 @@ import butterknife.ButterKnife;
 
 public class SeasonCategoryFragment extends Fragment implements ObserverRepository {
     private static final String ARG_SECTION_SEASON = "section_season";
-    private static final String LOG = SeasonCategoryFragment.class.getCanonicalName();
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
@@ -71,8 +70,8 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mModelRepository = new FirebaseRepository();
-        mMyRVAdapter = new MyRVAdapter(null, getContext());
+        mModelRepository = new FireBaseRepository();
+        mMyRVAdapter = new MyRVAdapter(getContext());
         mProgressBar.setVisibility(View.VISIBLE);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -89,12 +88,6 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
         super.onStart();
         if (mModelRepository != null)
             mModelRepository.registerObserver(this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
     }
 
     @Override
@@ -142,6 +135,4 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
         }
         return 0;
     }
-
 }
-

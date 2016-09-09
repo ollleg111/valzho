@@ -14,7 +14,7 @@ public class MainActivity extends BaseActivity
         implements IntroFragment.OnFragmentInteractionListener, SelectSeasonFragment.OnFragmentSelectionSeason {
 
     public static final String KEY_SEASON = "season";
-    protected FragmentManager mFragmentManager = getSupportFragmentManager();
+    protected final FragmentManager mFragmentManager = getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,6 @@ public class MainActivity extends BaseActivity
             startIntroFragment();
         }
     }
-
-
 
     @Override
     protected void displaySelectedSeason(Seasons seasons) {

@@ -2,6 +2,7 @@ package com.solodilov.evgen.valzho.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,17 +18,15 @@ import com.solodilov.evgen.valzho.Seasons;
 
 public abstract class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static FirebaseDatabase firebaseDatabase;
+    private DrawerLayout mDrawerLayout;
 
     public DrawerLayout getDrawerLayout() {
         return mDrawerLayout;
     }
 
-    private DrawerLayout mDrawerLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (firebaseDatabase == null) {
             firebaseDatabase = FirebaseDatabase.getInstance();
             firebaseDatabase.setPersistenceEnabled(true);
@@ -55,7 +54,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.app_resume:
                 Intent intent = new Intent(this, AboutActivity.class);
