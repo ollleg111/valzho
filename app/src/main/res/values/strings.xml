@@ -22,4 +22,5 @@
     <string name="desc_category_autumn">Category autumn</string>
     <string name="desc_brand_logo">Brand LOGO</string>
     <string name="text_about">About</string>
+    <string name="alert_beta">This is \n BETA VERSION</string>
 </resources>

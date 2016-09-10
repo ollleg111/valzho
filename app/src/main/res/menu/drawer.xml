@@ -3,20 +3,27 @@
     <group android:checkableBehavior="none">
         <item
             android:id="@+id/menu_winter"
+            android:icon="@drawable/snow_flake"
             android:title="@string/text_winter" />
         <item
             android:id="@+id/menu_spring"
+            android:icon="@drawable/spring_flake"
             android:title="@string/text_spring" />
         <item
             android:id="@+id/menu_summer"
+            android:icon="@drawable/summer_flake"
             android:title="@string/text_summer" />
         <item
             android:id="@+id/menu_autumn"
+            android:icon="@drawable/autumn_flake"
             android:title="@string/text_autumn" />
     </group>
-    <group android:checkableBehavior="none">
-        <item android:id="@+id/app_resume"
-            android:title="@string/label_about"
-            android:icon="@android:drawable/ic_menu_info_details"/>
-    </group>
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/app_resume"
+                android:icon="@android:drawable/ic_menu_info_details"
+                android:title="@string/label_about" />
+        </menu>
+    </item>
 </menu>

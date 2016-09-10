@@ -17,4 +17,5 @@
     <string name="text_summer">Лето</string>
     <string name="text_winter">Зима</string>
     <string name="title_activity_season_category">Сезоны</string>
+    <string name="alert_beta">Это Beta версия</string>
 </resources>
