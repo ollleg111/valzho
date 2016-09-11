@@ -103,26 +103,41 @@ public class FullCardModelFragment extends DialogFragment implements View.OnClic
     }
 
     private void activateArrow() {
-        mArrowBack.setVisibility(View.VISIBLE);
-        mArrowForward.setVisibility(View.VISIBLE);
         mArrowForward.setOnClickListener(this);
         mArrowBack.setOnClickListener(this);
+        arrowCheck();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.arrow_back:
-                mViewPager.setCurrentItem(getItem(-1),true);
+                mViewPager.setCurrentItem(getItem(-1), true);
                 break;
             case R.id.arrow_forward:
-                mViewPager.setCurrentItem(getItem(+1),true);
+                mViewPager.setCurrentItem(getItem(+1), true);
                 break;
             default:
+        }
+        arrowCheck();
+    }
+
+    private void arrowCheck() {
+        int i = mViewPager.getCurrentItem();
+        if (i == 0) {
+            mArrowBack.setVisibility(View.GONE);
+            mArrowForward.setVisibility(View.VISIBLE);
+        }
+        else if (i == mViewPager.getAdapter().getCount() - 1) {
+            mArrowForward.setVisibility(View.GONE);
+            mArrowBack.setVisibility(View.VISIBLE);
+        } else {
+            mArrowForward.setVisibility(View.VISIBLE);
+            mArrowBack.setVisibility(View.VISIBLE);
         }
     }
 
     private int getItem(int i) {
-        return mViewPager.getCurrentItem()+i;
+        return mViewPager.getCurrentItem() + i;
     }
 }

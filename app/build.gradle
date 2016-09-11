@@ -7,7 +7,7 @@ android {
     productFlavors {
         valzho {
             applicationId "com.solodilov.evgen.valzho"
-            versionName "alfa-0.11"
+            versionName "alfa-0.12"
         }
     }
     defaultConfig {
