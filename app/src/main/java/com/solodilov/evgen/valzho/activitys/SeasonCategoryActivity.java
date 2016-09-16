@@ -1,10 +1,10 @@
 package com.solodilov.evgen.valzho.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,7 +16,6 @@ import com.solodilov.evgen.valzho.Seasons;
 import com.solodilov.evgen.valzho.adapters.MyRVAdapter;
 import com.solodilov.evgen.valzho.adapters.SectionsPagerAdapter;
 import com.solodilov.evgen.valzho.api.Model;
-import com.solodilov.evgen.valzho.fragments.FullCardModelFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,8 +65,11 @@ public class SeasonCategoryActivity extends BaseActivity implements MyRVAdapter.
 
     @Override
     public void onShowCardModel(Model model) {
-        FullCardModelFragment fragment = FullCardModelFragment.newInstance(model);
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragment.show(fragmentTransaction, null);
+//        FullCardModelFragment fragment = FullCardModelFragment.newInstance(model);
+//        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction().replace(R.id.fl_main_container);
+//        fragment.show(fragmentTransaction, null);
+        Intent intent = new Intent(this,DetailActivity.class);
+        intent.putExtra()
+        startActivity(intent);
     }
 }
