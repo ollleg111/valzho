@@ -7,7 +7,7 @@ public interface ModelRepository {
 
     void registerObserver(ObserverRepository o);
 
-    void removeObserver();
+    void removeObserver(ObserverRepository o);
 
     void notifyObserver();
 }

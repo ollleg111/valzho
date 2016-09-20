@@ -1,5 +1,6 @@
 package com.solodilov.evgen.valzho.models;
 
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,22 +17,17 @@ import java.util.List;
 
 public class FireBaseRepository implements ModelRepository {
     private static final String LOG = FireBaseRepository.class.getCanonicalName();
-    private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth mAuth;
-    private List<Model> modelList;
-    private ObserverRepository mObserverRepository;
-
-    public FireBaseRepository() {
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        modelList = new LinkedList<>();
-    }
+    private final List<Model> modelList = new LinkedList<>();
+    private ObserverRepository mObserverRepositoryList;
 
     @Override
     public void loadModelList(Seasons season) {
         if (mAuth == null) {
             mAuth = FirebaseAuth.getInstance();
         }
-        DatabaseReference mReference = firebaseDatabase.getReference();
+        if (modelList != null && !modelList.isEmpty()) modelList.clear();
+        DatabaseReference mReference = FirebaseDatabase.getInstance().getReference();
         if (season == Seasons.ALL) {
             for (Seasons s : Seasons.values()) {
                 if (s != Seasons.ALL)
@@ -57,8 +53,7 @@ public class FireBaseRepository implements ModelRepository {
                         }
                     }
                 }
-                if (mObserverRepository != null)
-                    notifyObserver();
+                notifyObserver();
             }
 
             @Override
@@ -70,16 +65,16 @@ public class FireBaseRepository implements ModelRepository {
 
     @Override
     public void registerObserver(ObserverRepository o) {
-        mObserverRepository = o;
+        mObserverRepositoryList = o;
     }
 
     @Override
-    public void removeObserver() {
-        mObserverRepository = null;
+    public void removeObserver(@Nullable ObserverRepository o) {
+        mObserverRepositoryList = null;
     }
 
     @Override
     synchronized public void notifyObserver() {
-        mObserverRepository.update(modelList);
+        mObserverRepositoryList.update(modelList);
     }
 }

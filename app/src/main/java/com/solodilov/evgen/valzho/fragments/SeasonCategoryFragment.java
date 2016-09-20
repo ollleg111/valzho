@@ -92,7 +92,7 @@ public class SeasonCategoryFragment extends Fragment implements ObserverReposito
 
     @Override
     public void onStop() {
-        mModelRepository.removeObserver();
+        mModelRepository.removeObserver(this);
         super.onStop();
     }
 

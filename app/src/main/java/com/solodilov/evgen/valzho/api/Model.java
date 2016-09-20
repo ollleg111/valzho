@@ -1,15 +1,16 @@
 package com.solodilov.evgen.valzho.api;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Model implements Serializable {
     private String mModelName;
     private String mArraySize;
     private String mDescription;
-    private List<String> mPhotoURL;
+    private List<String> mPhotoURL = new LinkedList<>();
 
-    Model() {
+    public Model() {
     }
 
     public Model(String modelName, String arraySizes, String description, List<String> photos) {

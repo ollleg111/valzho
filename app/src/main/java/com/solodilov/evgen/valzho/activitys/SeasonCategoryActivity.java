@@ -2,14 +2,10 @@ package com.solodilov.evgen.valzho.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.solodilov.evgen.valzho.R;
 import com.solodilov.evgen.valzho.Seasons;
@@ -21,13 +17,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SeasonCategoryActivity extends BaseActivity implements MyRVAdapter.OnShowCardModel {
-
-    @BindView(R.id.vp_fragment_container)
+    @BindView(R.id.vp_content_fragment_container)
     ViewPager mViewPager;
     @BindView(R.id.tabs)
     TabLayout mTabLayout;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    private Seasons mSeason;
     private final FragmentManager mFragmentManager = getSupportFragmentManager();
 
     @Override
@@ -37,20 +33,18 @@ public class SeasonCategoryActivity extends BaseActivity implements MyRVAdapter.
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
         initDrawerNav(mToolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, mFragmentManager);
         mViewPager.setAdapter(sectionsPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
-        Seasons season = (Seasons) getIntent().getSerializableExtra(MainActivity.KEY_SEASON);
-        mViewPager.setCurrentItem(season.ordinal());
+
+        Intent intent = getIntent();
+        if (intent.hasExtra(MainActivity.KEY_SEASON)) {
+            mSeason = (Seasons) getIntent().getSerializableExtra(MainActivity.KEY_SEASON);
+        } else {
+            mSeason = Seasons.ALL;
+        }
+        mViewPager.setCurrentItem(mSeason.ordinal());
     }
 
     @Override
@@ -58,18 +52,13 @@ public class SeasonCategoryActivity extends BaseActivity implements MyRVAdapter.
         mViewPager.setCurrentItem(seasons.ordinal());
     }
 
-    public void setVisibleToolBar(boolean visible) {
-        mTabLayout.setVisibility(visible ? View.VISIBLE : View.GONE);
-        mToolbar.setVisibility(visible ? View.VISIBLE : View.GONE);
-    }
-
     @Override
     public void onShowCardModel(Model model) {
-//        FullCardModelFragment fragment = FullCardModelFragment.newInstance(model);
-//        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction().replace(R.id.fl_main_container);
-//        fragment.show(fragmentTransaction, null);
-        Intent intent = new Intent(this,DetailActivity.class);
-        intent.putExtra()
+
+        Seasons seasons = Seasons.values()[mViewPager.getCurrentItem()];
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(BaseActivity.INTENT_NAME_MODEL, model);
+        intent.putExtra(MainActivity.KEY_SEASON, seasons);
         startActivity(intent);
     }
 }

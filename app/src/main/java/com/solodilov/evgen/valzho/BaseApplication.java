@@ -20,4 +20,7 @@ public class BaseApplication extends Application {
         Picasso built = builder.build();
         Picasso.setSingletonInstance(built);
     }
+    public FirebaseDatabase getFireBaseDatabase(){
+        return firebaseDatabase;
+    }
 }

@@ -43,6 +43,7 @@ dependencies {
     compile 'com.google.firebase:firebase-database:9.4.0'
     compile 'com.jakewharton:butterknife:8.2.1'
     compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha1'
 }
 apply plugin: 'com.google.gms.google-services'
 

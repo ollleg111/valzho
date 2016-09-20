@@ -28,7 +28,7 @@ public class MyViewPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return mListPhoto == null || mListPhoto.size() == 0 ? 1 : mListPhoto.size();
+        return mListPhoto == null || mListPhoto.isEmpty() ? 1 : mListPhoto.size();
     }
 
     @Override
@@ -67,7 +67,7 @@ public class MyViewPagerAdapter extends PagerAdapter {
         ((ViewPager) container).removeView((View) object);
     }
 
-    public void restoreAdapter(List<String> uriList) {
+    public void swapAdapter(List<String> uriList) {
         mListPhoto = uriList;
         notifyDataSetChanged();
     }

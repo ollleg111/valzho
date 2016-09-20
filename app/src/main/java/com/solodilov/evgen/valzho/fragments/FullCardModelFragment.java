@@ -1,29 +1,29 @@
 package com.solodilov.evgen.valzho.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.solodilov.evgen.valzho.R;
-import com.solodilov.evgen.valzho.activitys.SeasonCategoryActivity;
 import com.solodilov.evgen.valzho.adapters.MyViewPagerAdapter;
 import com.solodilov.evgen.valzho.api.Model;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class FullCardModelFragment extends DialogFragment implements View.OnClickListener {
+public class FullCardModelFragment extends Fragment implements View.OnClickListener{
 
     private static final String ARG_SECTION_MODEL = "model";
+
     private Model mModel;
+    OnRefreshAppBar mRefreshAppBar;
     @BindView(R.id.vp_collection_photo)
     ViewPager mViewPager;
     @BindView(R.id.tv_big_model_name)
@@ -45,25 +45,28 @@ public class FullCardModelFragment extends DialogFragment implements View.OnClic
         return fragment;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        Window window = getDialog().getWindow();
-        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        window.setGravity(Gravity.CENTER);
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mModel = (Model) getArguments().getSerializable(ARG_SECTION_MODEL);
-        View rootView = inflater.inflate(R.layout.fragment_full_card_model, container);
+        View rootView = inflater.inflate(R.layout.fragment_full_card_model, container, false);
         ButterKnife.bind(this, rootView);
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        MyViewPagerAdapter pagerAdapter = new MyViewPagerAdapter(getContext(), mModel != null ? mModel.getmPhotoURL() : null);
+        mViewPager.setAdapter(pagerAdapter);
+        if (pagerAdapter.getCount() > 1) {
+            activateArrow();
+        }
+        if (mModel != null) {
+            initViews();
+        }
+    }
+
+    private void initViews() {
         mTv.setText(mModel.getmModelName());
         mTvDescription.setText(mModel.getmDescription());
         mTvArraySize.setText(mModel.getmArraySize());
@@ -72,34 +75,29 @@ public class FullCardModelFragment extends DialogFragment implements View.OnClic
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        MyViewPagerAdapter pagerAdapter = new MyViewPagerAdapter(getContext(), mModel.getmPhotoURL());
-        mViewPager.setAdapter(pagerAdapter);
-        if (pagerAdapter.getCount() > 1) {
-            activateArrow();
-        }
+
     }
 
     @Override
-    public void onDestroyView() {
-        SeasonCategoryActivity seasonCategoryActivity = (SeasonCategoryActivity) getActivity();
-        seasonCategoryActivity.setVisibleToolBar(true);
-        super.onDestroyView();
+    public void onStart() {
+        super.onStart();
+        Activity activity = getActivity();
+        if (activity != null && activity instanceof OnRefreshAppBar)
+            mRefreshAppBar = (OnRefreshAppBar) getActivity();
     }
 
     @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        if (savedInstanceState != null) {
-            mModel = (Model) savedInstanceState.getSerializable(ARG_SECTION_MODEL);
-            MyViewPagerAdapter myPagerAdapter = (MyViewPagerAdapter) mViewPager.getAdapter();
-            myPagerAdapter.restoreAdapter(mModel.getmPhotoURL());
-        }
+    public void onResume() {
+        super.onResume();
+        //  Log.d("qqqqqqQQQqqqqq",mModel.getmModelName());
+        mRefreshAppBar.onRefreshImageTop(mModel);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable(ARG_SECTION_MODEL, mModel);
-        super.onSaveInstanceState(outState);
+    public void onStop() {
+        if (mRefreshAppBar != null)
+            mRefreshAppBar = null;
+        super.onStop();
     }
 
     private void activateArrow() {
@@ -127,8 +125,7 @@ public class FullCardModelFragment extends DialogFragment implements View.OnClic
         if (i == 0) {
             mArrowBack.setVisibility(View.GONE);
             mArrowForward.setVisibility(View.VISIBLE);
-        }
-        else if (i == mViewPager.getAdapter().getCount() - 1) {
+        } else if (i == mViewPager.getAdapter().getCount() - 1) {
             mArrowForward.setVisibility(View.GONE);
             mArrowBack.setVisibility(View.VISIBLE);
         } else {
@@ -139,5 +136,9 @@ public class FullCardModelFragment extends DialogFragment implements View.OnClic
 
     private int getItem(int i) {
         return mViewPager.getCurrentItem() + i;
+    }
+
+    public interface OnRefreshAppBar {
+        void onRefreshImageTop(Model m);
     }
 }

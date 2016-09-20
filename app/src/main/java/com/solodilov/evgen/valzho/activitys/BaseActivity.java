@@ -15,6 +15,7 @@ import com.solodilov.evgen.valzho.R;
 import com.solodilov.evgen.valzho.Seasons;
 
 public abstract class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    public static final String INTENT_NAME_MODEL = "Model from intent";
     private DrawerLayout mDrawerLayout;
 
     public DrawerLayout getDrawerLayout() {
