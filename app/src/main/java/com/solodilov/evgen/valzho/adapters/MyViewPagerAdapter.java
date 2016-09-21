@@ -56,7 +56,8 @@ public class MyViewPagerAdapter extends PagerAdapter {
         container.addView(rootView);
         return rootView;
     }
-    public int getItemPosition(Object object){
+
+    public int getItemPosition(Object object) {
         return POSITION_NONE;
     }
     @Override

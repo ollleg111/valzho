@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +75,8 @@ public class FullCardModelFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-        mRefreshAppBar.onRefreshImageTop();
+        Log.d("onResume","onResume: "+mModel.getmModelName());
+  //      mRefreshAppBar.onRefreshImageTop();
     }
 
     @Override
@@ -86,5 +88,6 @@ public class FullCardModelFragment extends Fragment{
 
     public interface OnRefreshAppBar {
         void onRefreshImageTop();
+        void onRefreshImageTop(int position);
     }
 }

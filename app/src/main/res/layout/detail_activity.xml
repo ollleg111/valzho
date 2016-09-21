@@ -26,7 +26,6 @@
 
             <include layout="@layout/header_detail" />
 
-
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -35,6 +34,7 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
+
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -68,6 +68,18 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_dialog_email"
         app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end" />
+        app:layout_anchorGravity="bottom|end|" />
+
+    <com.viewpagerindicator.CirclePageIndicator
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:strokeWidth="3dp"
+        app:lineWidth="30dp"
+        app:unselectedColor="#FF888888"
+        app:selectedColor="#FF880000"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|center|"
+        android:padding="10dip" />
 
 </android.support.design.widget.CoordinatorLayout>

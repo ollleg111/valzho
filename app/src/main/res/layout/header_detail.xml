@@ -14,4 +14,6 @@
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/photo" />
+
+
 </RelativeLayout>

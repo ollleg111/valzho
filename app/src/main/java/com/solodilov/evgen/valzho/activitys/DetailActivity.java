@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -19,6 +20,7 @@ import com.solodilov.evgen.valzho.fragments.FullCardModelFragment;
 import com.solodilov.evgen.valzho.models.FireBaseRepository;
 import com.solodilov.evgen.valzho.models.ModelRepository;
 import com.solodilov.evgen.valzho.models.ObserverRepository;
+import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.List;
 
@@ -38,6 +40,8 @@ public class DetailActivity extends AppCompatActivity
     ProgressBar mProgressBar;
     @BindView(R.id.toolbar_layout)
     CollapsingToolbarLayout mCollapsingToolbarLayout;
+    @BindView(R.id.indicator)
+    CirclePageIndicator mIndicator;
 
     private Model mModel;
     private ModelRepository mModelRepository;
@@ -63,6 +67,25 @@ public class DetailActivity extends AppCompatActivity
         mModelRepository.loadModelList(seasons);
         mPhotoViewPagerAdapter = new MyViewPagerAdapter(this, mModel != null ? mModel.getmPhotoURL() : null);
         mViewPagerPhoto.setAdapter(mPhotoViewPagerAdapter);
+        mIndicator.setViewPager(mViewPagerPhoto);
+
+        mViewPagerContent.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                    onRefreshImageTop(position);
+                }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
@@ -108,8 +131,15 @@ public class DetailActivity extends AppCompatActivity
 
     @Override
     public void onRefreshImageTop() {
-        Model model = mList.get(mViewPagerContent.getCurrentItem());
+        onRefreshImageTop(mViewPagerContent.getCurrentItem());
+    }
+
+    @Override
+    public void onRefreshImageTop(int position) {
+        Log.d("POSITION", String.valueOf(mViewPagerContent.getCurrentItem()));
+        Model model = mList.get(position);
         mCollapsingToolbarLayout.setTitle(model.getmModelName());
         mPhotoViewPagerAdapter.swapAdapter(model.getmPhotoURL());
+
     }
 }
