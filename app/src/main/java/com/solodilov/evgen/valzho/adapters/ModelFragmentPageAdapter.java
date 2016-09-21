@@ -30,4 +30,8 @@ public class ModelFragmentPageAdapter extends FragmentStatePagerAdapter {
         if (mModelList == null) return 1;
         return mModelList.size();
     }
+    public void swapAdapter(List<Model> list) {
+        mModelList = list;
+        notifyDataSetChanged();
+    }
 }

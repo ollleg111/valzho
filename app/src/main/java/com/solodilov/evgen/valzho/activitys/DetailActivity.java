@@ -1,8 +1,8 @@
 package com.solodilov.evgen.valzho.activitys;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import com.solodilov.evgen.valzho.R;
 import com.solodilov.evgen.valzho.Seasons;
 import com.solodilov.evgen.valzho.adapters.ModelFragmentPageAdapter;
+import com.solodilov.evgen.valzho.adapters.MyViewPagerAdapter;
 import com.solodilov.evgen.valzho.api.Model;
 import com.solodilov.evgen.valzho.fragments.FullCardModelFragment;
 import com.solodilov.evgen.valzho.models.FireBaseRepository;
@@ -30,14 +31,20 @@ public class DetailActivity extends AppCompatActivity
     Toolbar mToolbar;
     @BindView(R.id.vp_content_fragment_container)
     ViewPager mViewPagerContent;
+    @BindView(R.id.vp_collection_photo)
+    @Nullable
+    ViewPager mViewPagerPhoto;
     @BindView(R.id.progress_wait_data)
     ProgressBar mProgressBar;
     @BindView(R.id.toolbar_layout)
     CollapsingToolbarLayout mCollapsingToolbarLayout;
 
     private Model mModel;
-    private PagerAdapter mPagerAdapter;
     private ModelRepository mModelRepository;
+    private List<Model> mList;
+
+    private ModelFragmentPageAdapter mContentViewPagerAdapter;
+    private MyViewPagerAdapter mPhotoViewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +61,8 @@ public class DetailActivity extends AppCompatActivity
         mModelRepository = new FireBaseRepository();
         Seasons seasons = (Seasons) getIntent().getSerializableExtra(MainActivity.KEY_SEASON);
         mModelRepository.loadModelList(seasons);
+        mPhotoViewPagerAdapter = new MyViewPagerAdapter(this, mModel != null ? mModel.getmPhotoURL() : null);
+        mViewPagerPhoto.setAdapter(mPhotoViewPagerAdapter);
     }
 
     @Override
@@ -71,12 +80,16 @@ public class DetailActivity extends AppCompatActivity
 
     @Override
     public void update(List<Model> list) {
+        mList = list;
         if (!list.isEmpty()) {
-            mPagerAdapter = new ModelFragmentPageAdapter(getSupportFragmentManager(), list);
-            mViewPagerContent.setAdapter(mPagerAdapter);
+            if (mContentViewPagerAdapter == null) {
+                mContentViewPagerAdapter = new ModelFragmentPageAdapter(getSupportFragmentManager(), mList);
+                mViewPagerContent.setAdapter(mContentViewPagerAdapter);
+            }
+            mContentViewPagerAdapter.swapAdapter(mList);
             mProgressBar.setVisibility(View.GONE);
             mViewPagerContent.setVisibility(View.VISIBLE);
-            int index = getIndexModel(mModel, list);
+            int index = getIndexModel(mModel, mList);
             if (index != -1)
                 mViewPagerContent.setCurrentItem(index);
         } else {
@@ -94,7 +107,9 @@ public class DetailActivity extends AppCompatActivity
     }
 
     @Override
-    public void onRefreshImageTop(Model m) {
-        mCollapsingToolbarLayout.setTitle(mModel.getmModelName());
+    public void onRefreshImageTop() {
+        Model model = mList.get(mViewPagerContent.getCurrentItem());
+        mCollapsingToolbarLayout.setTitle(model.getmModelName());
+        mPhotoViewPagerAdapter.swapAdapter(model.getmPhotoURL());
     }
 }
