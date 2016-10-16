@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.solodilov.evgen.valzho" >
+    package="com.solodilov.evgen.valzho">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -11,10 +11,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".activitys.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +25,7 @@
             android:name=".activitys.SeasonCategoryActivity"
             android:label="@string/title_activity_season_category"
             android:parentActivityName=".activitys.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activitys.MainActivity" />
@@ -36,11 +36,14 @@
         <activity
             android:name=".activitys.DetailActivity"
             android:label="@string/title_activity_detail"
-            android:screenOrientation="portrait"
+            android:parentActivityName=".activitys.SeasonCategoryActivity"
 
-            android:theme="@style/StyledIndicators"
-            android:parentActivityName=".activitys.SeasonCategoryActivity">
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/StyledIndicators" />
+        <activity
+            android:name=".activitys.DevDetailActivity"
+            android:label="Developer Information"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

@@ -26,6 +26,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:text="@string/create_by_yevhen_solodilov"
+        android:clickable="true"
         android:textColor="@color/colorPrimary"
         />
 

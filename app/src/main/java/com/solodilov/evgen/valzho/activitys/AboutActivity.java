@@ -1,5 +1,6 @@
 package com.solodilov.evgen.valzho.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import com.solodilov.evgen.valzho.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class AboutActivity extends AppCompatActivity {
     @BindView(R.id.about_text_version)
@@ -21,5 +23,11 @@ public class AboutActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         String strVersion = "Version: " + BuildConfig.VERSION_NAME;
         mTextVersion.setText(strVersion);
+    }
+
+    @OnClick(R.id.about_label_creator)
+    public void onClick() {
+        Intent intent = new Intent(this, DevDetailActivity.class);
+        startActivity(intent);
     }
 }

@@ -7,13 +7,13 @@ android {
     productFlavors {
         valzho {
             applicationId "com.solodilov.evgen.valzho"
-            versionName "alfa-0.12"
+            versionName "alfa-0.13"
         }
     }
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 24
-        versionCode 2
+        versionCode 3
     }
 
     compileOptions {
