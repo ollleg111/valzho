@@ -1,5 +1,7 @@
 package com.solodilov.evgen.valzho.activitys;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -14,7 +16,7 @@ import android.widget.ProgressBar;
 import com.solodilov.evgen.valzho.R;
 import com.solodilov.evgen.valzho.Seasons;
 import com.solodilov.evgen.valzho.adapters.ModelFragmentPageAdapter;
-import com.solodilov.evgen.valzho.adapters.MyViewPagerAdapter;
+import com.solodilov.evgen.valzho.adapters.PhotoViewPagerAdapter;
 import com.solodilov.evgen.valzho.api.Model;
 import com.solodilov.evgen.valzho.fragments.FullCardModelFragment;
 import com.solodilov.evgen.valzho.models.FireBaseRepository;
@@ -48,7 +50,7 @@ public class DetailActivity extends AppCompatActivity
     private List<Model> mList;
 
     private ModelFragmentPageAdapter mContentViewPagerAdapter;
-    private MyViewPagerAdapter mPhotoViewPagerAdapter;
+    private PhotoViewPagerAdapter mPhotoViewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +67,12 @@ public class DetailActivity extends AppCompatActivity
         mModelRepository = new FireBaseRepository();
         Seasons seasons = (Seasons) getIntent().getSerializableExtra(MainActivity.KEY_SEASON);
         mModelRepository.loadModelList(seasons);
-        mPhotoViewPagerAdapter = new MyViewPagerAdapter(this, mModel != null ? mModel.getmPhotoURL() : null);
+        mPhotoViewPagerAdapter = new PhotoViewPagerAdapter(this, mModel != null ? mModel.getmPhotoURL() : null);
         mViewPagerPhoto.setAdapter(mPhotoViewPagerAdapter);
         mIndicator.setViewPager(mViewPagerPhoto);
+
+        mCollapsingToolbarLayout.setTitle(mModel.getmModelName());
+        mCollapsingToolbarLayout.setExpandedTitleTextColor(ColorStateList.valueOf(Color.parseColor("#FF4081")));
 
         mViewPagerContent.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -78,8 +83,8 @@ public class DetailActivity extends AppCompatActivity
             @Override
             public void onPageSelected(int position) {
 
-                    onRefreshImageTop(position);
-                }
+                onRefreshImageTop(position);
+            }
 
             @Override
             public void onPageScrollStateChanged(int state) {
@@ -140,6 +145,5 @@ public class DetailActivity extends AppCompatActivity
         Model model = mList.get(position);
         mCollapsingToolbarLayout.setTitle(model.getmModelName());
         mPhotoViewPagerAdapter.swapAdapter(model.getmPhotoURL());
-
     }
 }

@@ -2,7 +2,6 @@ package com.solodilov.evgen.valzho.adapters;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +16,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyViewPagerAdapter extends PagerAdapter {
+public class PhotoViewPagerAdapter extends PagerAdapter {
     private final Context mContext;
     private List<String> mListPhoto;
 
-    public MyViewPagerAdapter(Context context, List<String> listPhoto) {
+    public PhotoViewPagerAdapter(Context context, List<String> listPhoto) {
         mListPhoto = listPhoto;
         mContext = context;
     }
@@ -60,6 +59,7 @@ public class MyViewPagerAdapter extends PagerAdapter {
     public int getItemPosition(Object object) {
         return POSITION_NONE;
     }
+
     @Override
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
@@ -67,7 +67,7 @@ public class MyViewPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        ((ViewPager) container).removeView((View) object);
+        container.removeView((View) object);
     }
 
     public void swapAdapter(List<String> uriList) {
