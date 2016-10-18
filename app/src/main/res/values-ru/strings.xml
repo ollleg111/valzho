@@ -18,4 +18,6 @@
     <string name="text_winter">Зима</string>
     <string name="title_activity_season_category">Сезоны</string>
     <string name="alert_beta">Это Beta версия</string>
+    <string name="action_settings">Настройки</string>
+    <string name="title_activity_detail">Информация о разработчике</string>
 </resources>
